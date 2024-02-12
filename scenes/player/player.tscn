@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://3dde03ktiua5"]
+[gd_scene load_steps=13 format=3 uid="uid://3dde03ktiua5"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_v56ng"]
 [ext_resource type="PackedScene" uid="uid://bo0jt2pkyo23n" path="res://scenes/player/camera.tscn" id="2_amrqj"]
@@ -66,9 +66,44 @@ tracks/1/keys = {
 "values": [0, 1, 1]
 }
 
+[sub_resource type="Animation" id="Animation_x78po"]
+resource_name = "jump_up"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Smoothing2D/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [13, 14, 15, 16]
+}
+
+[sub_resource type="Animation" id="Animation_kln1k"]
+resource_name = "jump_down"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Smoothing2D/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [17, 18]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x45jy"]
 _data = {
 "idle": SubResource("Animation_vr4m0"),
+"jump_down": SubResource("Animation_kln1k"),
+"jump_up": SubResource("Animation_x78po"),
 "walk": SubResource("Animation_15wpn")
 }
 
@@ -109,8 +144,8 @@ hframes = 3
 position = Vector2(0, -80)
 scale = Vector2(4, 4)
 texture = ExtResource("3_vqx7t")
-hframes = 12
-frame = 1
+hframes = 19
+frame = 14
 
 [node name="camera" parent="." instance=ExtResource("2_amrqj")]
 

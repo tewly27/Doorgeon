@@ -33,11 +33,17 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 	#animation
-	if direction:
-		if direction > 0:
-			$Smoothing2D/sprite.flip_h = false
-		else:
-			$Smoothing2D/sprite.flip_h = true
-		$AnimationPlayer.play("walk")
+	if direction > 0:
+		$Smoothing2D/sprite.flip_h = false
 	else:
-		$AnimationPlayer.play("idle")
+		$Smoothing2D/sprite.flip_h = true
+	if !is_on_floor():
+		if velocity.y > 0:
+			$AnimationPlayer.play("jump_down")
+		else:
+			$AnimationPlayer.play("jump_up")
+	else:
+		if direction:
+			$AnimationPlayer.play("walk")
+		else:
+			$AnimationPlayer.play("idle")
