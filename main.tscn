@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://bnclhe841j5pd"]
+[gd_scene load_steps=4 format=3 uid="uid://bnclhe841j5pd"]
 
 [ext_resource type="Texture2D" uid="uid://cwalq6kn21ebe" path="res://door1.png" id="1_51ka1"]
+[ext_resource type="PackedScene" uid="uid://3dde03ktiua5" path="res://scenes/player/player.tscn" id="2_x27av"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xg1kk"]
+size = Vector2(866, 107)
 
 [node name="Node2D" type="Node2D"]
 
@@ -15,3 +19,16 @@ texture = ExtResource("1_51ka1")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 polygon = PackedVector2Array(-365, 77, 495, 74, 455, 185, -337, 174)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Polygon2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Polygon2D/StaticBody2D"]
+position = Vector2(63, 126.5)
+shape = SubResource("RectangleShape2D_xg1kk")
+
+[node name="player" parent="." instance=ExtResource("2_x27av")]
+position = Vector2(0, 70)
+acceleration_time = 0.15
+speed = 600.0
+jump_velocity = -100.0
+gravity = 2400.0
