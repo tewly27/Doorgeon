@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://3dde03ktiua5"]
+[gd_scene load_steps=5 format=3 uid="uid://3dde03ktiua5"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_v56ng"]
 [ext_resource type="PackedScene" uid="uid://bo0jt2pkyo23n" path="res://scenes/player/camera.tscn" id="2_amrqj"]
+[ext_resource type="Texture2D" uid="uid://bgcpdr3jsgmcw" path="res://player1.png" id="3_sbxc0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j6t3t"]
 size = Vector2(40, 16)
@@ -27,3 +28,7 @@ wait_time = 0.15
 one_shot = true
 
 [node name="camera" parent="." instance=ExtResource("2_amrqj")]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -20)
+texture = ExtResource("3_sbxc0")
