@@ -4,7 +4,7 @@ extends Node2D
 @export var aheadDistance: float = 300
 @export var verticalMoveTime: float
 @export var verticalMoveSpeed: float
-
+@export var vertical_offset: float
 @export var y_follow = true
 @export var x_follow = true
 var vertical_look_direction: float
@@ -24,8 +24,8 @@ func _process(delta: float) -> void:
 	vertical_look_direction = Input.get_axis("look_up","look_down")
 	if y_follow:
 		if vertical_look_direction:
-			tween.tween_property(self,"global_position:y",player.global_position.y+vertical_look_direction*aheadDistance,verticalMoveTime)
+			tween.tween_property(self,"global_position:y",player.global_position.y+vertical_offset+vertical_look_direction*aheadDistance,verticalMoveTime)
 		
 		else:
-			tween.tween_property(self,"global_position:y",player.global_position.y,verticalMoveTime)
+			tween.tween_property(self,"global_position:y",player.global_position.y+vertical_offset,verticalMoveTime)
 
