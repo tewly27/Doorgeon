@@ -5,8 +5,8 @@
 [node name="camera" type="Node2D"]
 top_level = true
 script = ExtResource("1_2k0sa")
-moveTime = 0.3
-verticalMoveTime = 0.2
+moveTime = 0.7
+verticalMoveTime = 0.7
 verticalMoveSpeed = 10.0
 
 [node name="Camera2D" type="Camera2D" parent="."]

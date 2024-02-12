@@ -31,3 +31,13 @@ func _physics_process(delta: float) -> void:
 	tween.tween_property(self,"velocity:x",direction*speed,acceleration_time)
 
 	move_and_slide()
+	
+	#animation
+	if direction:
+		if direction > 0:
+			$sprite.flip_h = false
+		else:
+			$sprite.flip_h = true
+		$AnimationPlayer.play("walk")
+	else:
+		$AnimationPlayer.play("idle")
