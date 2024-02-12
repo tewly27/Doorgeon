@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://6btho3sqa0un"]
+
+[ext_resource type="Texture2D" uid="uid://4ene0ftqbmp0" path="res://graphics/lightSources/candles.png" id="1_kue32"]
+[ext_resource type="Texture2D" uid="uid://drpcv6dcbdjxd" path="res://graphics/2d_lights_and_shadows_neutral_point_light.webp" id="2_oquyx"]
+
+[node name="candles" type="Sprite2D"]
+texture_filter = 1
+position = Vector2(0, -16)
+scale = Vector2(4, 4)
+texture = ExtResource("1_kue32")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(1, 0.741176, 0.027451, 1)
+energy = 0.62
+shadow_enabled = true
+texture = ExtResource("2_oquyx")
+texture_scale = 0.2
