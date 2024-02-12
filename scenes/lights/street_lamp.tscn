@@ -3,9 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://dbi7p8mp7qloa" path="res://graphics/lightSources/streetLamp.png" id="1_jtjxi"]
 [ext_resource type="Texture2D" uid="uid://drpcv6dcbdjxd" path="res://graphics/2d_lights_and_shadows_neutral_point_light.webp" id="2_ymt3d"]
 
-[node name="Sprite2D" type="Sprite2D"]
+[node name="street_lamp" type="Sprite2D"]
 position = Vector2(0, -103)
-scale = Vector2(4, 4)
+scale = Vector2(3, 3)
 texture = ExtResource("1_jtjxi")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]

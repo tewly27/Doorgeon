@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bl0pssxxbc6a8" path="res://graphics/door2.png" id="4_ylbgg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j6t3t"]
-size = Vector2(70, 112)
+size = Vector2(44, 83)
 
 [sub_resource type="Animation" id="Animation_vr4m0"]
 resource_name = "idle"
@@ -109,13 +109,14 @@ _data = {
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_uuac3"]
 cull_mode = 1
-polygon = PackedVector2Array(34, 7, 41, 110, -18, 109, -2, 7)
+polygon = PackedVector2Array(31, -6, 36, 71, -4, 71, 10, -6)
 
 [node name="player" type="CharacterBody2D"]
+position = Vector2(0, 47)
 script = ExtResource("1_v56ng")
 
 [node name="collision" type="CollisionShape2D" parent="."]
-position = Vector2(-3, -56)
+position = Vector2(2, -64.5)
 shape = SubResource("RectangleShape2D_j6t3t")
 
 [node name="CoyoteTimer" type="Timer" parent="."]
@@ -135,14 +136,14 @@ libraries = {
 script = ExtResource("3_72x1j")
 
 [node name="Door2" type="Sprite2D" parent="Smoothing2D"]
-position = Vector2(-12, -92)
-scale = Vector2(4, 4)
+position = Vector2(-7, -88)
+scale = Vector2(3, 3)
 texture = ExtResource("4_ylbgg")
 hframes = 3
 
 [node name="sprite" type="Sprite2D" parent="Smoothing2D"]
 position = Vector2(0, -80)
-scale = Vector2(4, 4)
+scale = Vector2(3, 3)
 texture = ExtResource("3_vqx7t")
 hframes = 19
 frame = 14
@@ -150,5 +151,5 @@ frame = 14
 [node name="camera" parent="." instance=ExtResource("2_amrqj")]
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
-position = Vector2(-16, -109)
+position = Vector2(-14, -98)
 occluder = SubResource("OccluderPolygon2D_uuac3")

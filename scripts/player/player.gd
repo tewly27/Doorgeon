@@ -35,7 +35,7 @@ func _physics_process(delta: float) -> void:
 	#animation
 	if direction > 0:
 		$Smoothing2D/sprite.flip_h = false
-	else:
+	elif direction < 0:
 		$Smoothing2D/sprite.flip_h = true
 	if !is_on_floor():
 		if velocity.y > 0:
