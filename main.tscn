@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://bnclhe841j5pd"]
+
+[ext_resource type="Texture2D" uid="uid://cwalq6kn21ebe" path="res://door1.png" id="1_51ka1"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="TileMap" type="TileMap" parent="."]
+format = 2
+
+[node name="Door1" type="Sprite2D" parent="."]
+position = Vector2(85, -18)
+texture = ExtResource("1_51ka1")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-365, 77, 495, 74, 455, 185, -337, 174)
