@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://3dde03ktiua5"]
+[gd_scene load_steps=11 format=3 uid="uid://3dde03ktiua5"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_v56ng"]
 [ext_resource type="PackedScene" uid="uid://bo0jt2pkyo23n" path="res://scenes/player/camera.tscn" id="2_amrqj"]
@@ -72,6 +72,10 @@ _data = {
 "walk": SubResource("Animation_15wpn")
 }
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_uuac3"]
+cull_mode = 1
+polygon = PackedVector2Array(34, 7, 41, 110, -18, 109, -2, 7)
+
 [node name="player" type="CharacterBody2D"]
 script = ExtResource("1_v56ng")
 
@@ -109,3 +113,7 @@ hframes = 12
 frame = 1
 
 [node name="camera" parent="." instance=ExtResource("2_amrqj")]
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+position = Vector2(-16, -109)
+occluder = SubResource("OccluderPolygon2D_uuac3")
