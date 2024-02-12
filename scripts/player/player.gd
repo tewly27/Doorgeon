@@ -35,9 +35,9 @@ func _physics_process(delta: float) -> void:
 	#animation
 	if direction:
 		if direction > 0:
-			$sprite.flip_h = false
+			$Smoothing2D/sprite.flip_h = false
 		else:
-			$sprite.flip_h = true
+			$Smoothing2D/sprite.flip_h = true
 		$AnimationPlayer.play("walk")
 	else:
 		$AnimationPlayer.play("idle")
