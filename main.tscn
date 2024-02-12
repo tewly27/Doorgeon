@@ -16,6 +16,8 @@ position = Vector2(85, -18)
 texture = ExtResource("1_51ka1")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2(-75.0058, 0)
+scale = Vector2(3.16163, 1)
 polygon = PackedVector2Array(-365, 77, 495, 74, 455, 185, -337, 174)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Polygon2D"]
