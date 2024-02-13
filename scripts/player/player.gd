@@ -6,6 +6,7 @@ extends CharacterBody2D
 @export var gravity: float
 var direction: float
 var inJump = false
+var attacking = false
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -28,12 +29,27 @@ func _physics_process(delta: float) -> void:
 
 	direction = Input.get_axis("move_left", "move_right")
 	var tween = get_tree().create_tween()
-	
-	tween.tween_property(self,"velocity:x",direction*speed,acceleration_time)
 
+	tween.tween_property(self,"velocity:x",direction*speed,acceleration_time)
+	if !$Smoothing2D/sprite.flip_h and Input.is_action_just_pressed("move_left"):
+		velocity.x = 0
+	if $Smoothing2D/sprite.flip_h and Input.is_action_just_pressed("move_right"):
+		velocity.x = 0
 	move_and_slide()
-	
+	if Input.is_action_just_pressed("attack1") and $AttackTimer.time_left == 0:
+		velocity.y += jump_velocity
+		attacking = true
+		$AttackTimer.start()
+	if $AttackTimer.time_left == 0:
+		attacking = false
+		
 	#animation
+	if attacking:
+		if !$Smoothing2D/sprite.flip_h:
+			$AnimationPlayer.play("attack1")
+		else :
+			$AnimationPlayer.play("attack1_2")
+		return
 	if direction > 0:
 		$Smoothing2D/sprite.flip_h = false
 	elif direction < 0:
@@ -51,3 +67,4 @@ func _physics_process(delta: float) -> void:
 			$AnimationPlayer.play("walk")
 		else:
 			$AnimationPlayer.play("idle")
+
