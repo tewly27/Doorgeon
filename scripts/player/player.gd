@@ -6,6 +6,7 @@ extends CharacterBody2D
 @export var gravity: float
 var direction: float
 var inJump = false
+var attacking = false
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -32,8 +33,15 @@ func _physics_process(delta: float) -> void:
 	tween.tween_property(self,"velocity:x",direction*speed,acceleration_time)
 
 	move_and_slide()
+	if Input.is_action_just_pressed("attack1") and $AttackTimer.time_left == 0:
+		velocity.y += jump_velocity
+		$AttackTimer.start()
+		
 	
 	#animation
+	if $AttackTimer.time_left != 0:
+		$AnimationPlayer.play("attack1")
+		return
 	if direction > 0:
 		$Smoothing2D/sprite.flip_h = false
 	elif direction < 0:
@@ -51,3 +59,4 @@ func _physics_process(delta: float) -> void:
 			$AnimationPlayer.play("walk")
 		else:
 			$AnimationPlayer.play("idle")
+
