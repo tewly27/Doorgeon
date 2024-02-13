@@ -149,6 +149,7 @@ position = Vector2(0, -80)
 scale = Vector2(3, 3)
 texture = ExtResource("3_vqx7t")
 hframes = 19
+vframes = 4
 frame = 14
 
 [node name="camera" parent="." instance=ExtResource("2_amrqj")]
