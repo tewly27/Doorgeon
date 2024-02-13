@@ -20,6 +20,7 @@ func _physics_process(delta: float) -> void:
 		$JumpTimer.start()
 		velocity.y = jump_velocity
 		inJump = true
+		$SFX/jump_sound.playing = true
 	if is_on_floor() and inJump and velocity.y == 0:
 		inJump = false
 	if Input.is_action_pressed("jump") and inJump and $JumpTimer.time_left != 0:
@@ -44,6 +45,9 @@ func _physics_process(delta: float) -> void:
 			$AnimationPlayer.play("jump_up")
 	else:
 		if direction:
+			if $SFX/footstep.playing ==false:
+				$SFX/footstep.pitch_scale = randf_range(0.95,1.05)
+				$SFX/footstep.playing = true
 			$AnimationPlayer.play("walk")
 		else:
 			$AnimationPlayer.play("idle")

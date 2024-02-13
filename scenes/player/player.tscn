@@ -1,11 +1,12 @@
-[gd_scene load_steps=16 format=3 uid="uid://3dde03ktiua5"]
+[gd_scene load_steps=15 format=3 uid="uid://3dde03ktiua5"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_v56ng"]
 [ext_resource type="PackedScene" uid="uid://bo0jt2pkyo23n" path="res://scenes/player/camera.tscn" id="2_amrqj"]
 [ext_resource type="Script" path="res://addons/smoothing/smoothing_2d.gd" id="3_72x1j"]
 [ext_resource type="Texture2D" uid="uid://b6htk26yjfngn" path="res://graphics/player/walk.png" id="3_vqx7t"]
 [ext_resource type="Texture2D" uid="uid://bl0pssxxbc6a8" path="res://graphics/door2.png" id="4_ylbgg"]
-[ext_resource type="Texture2D" uid="uid://dixw7mhdjtl0w" path="res://graphics/Attack1Effect.png" id="5_cafkq"]
+[ext_resource type="AudioStream" uid="uid://dhvv3nffji7ia" path="res://sounds/sfx/footsteps.wav" id="6_0u2oq"]
+[ext_resource type="AudioStream" uid="uid://brw368ffysa4o" path="res://sounds/sfx/jump_sound.wav" id="7_ocl71"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j6t3t"]
 size = Vector2(44, 83)
@@ -22,7 +23,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [20]
+"values": [0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -35,40 +36,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
-}
-
-[sub_resource type="Animation" id="Animation_kln1k"]
-resource_name = "jump_down"
-length = 0.4
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Smoothing2D/sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [17, 18]
-}
-
-[sub_resource type="Animation" id="Animation_x78po"]
-resource_name = "jump_up"
-length = 0.4
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Smoothing2D/sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.15, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [14, 15, 16]
 }
 
 [sub_resource type="Animation" id="Animation_15wpn"]
@@ -101,11 +68,9 @@ tracks/1/keys = {
 "values": [0, 1, 1]
 }
 
-[sub_resource type="Animation" id="Animation_53b1p"]
-resource_name = "attack1"
+[sub_resource type="Animation" id="Animation_x78po"]
+resource_name = "jump_up"
 length = 0.4
-loop_mode = 1
-step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -113,91 +78,31 @@ tracks/0/path = NodePath("Smoothing2D/sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [20, 22, 24, 26, 28, 29, 20]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Smoothing2D/Door2:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.1, 0.15, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(-3, -88), Vector2(129, -72), Vector2(-2, -87)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Smoothing2D/Door2:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.1, 0.15, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.0, 1.57003, 0.0]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Smoothing2D/Attack1Effect:frame")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0.15, 0.2, 0.25, 0.3, 0.35),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 1, 3, 4]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Smoothing2D/Attack1Effect:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0.15, 0.4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(84.94, -83), Vector2(93.45, -83)]
+"values": [13, 14, 15, 16]
 }
 
-[sub_resource type="Animation" id="Animation_wxsvn"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_kln1k"]
+resource_name = "jump_down"
+length = 0.4
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Smoothing2D/Door2:position")
+tracks/0/path = NodePath("Smoothing2D/sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-4, -88)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Smoothing2D/Door2:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.469686]
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [17, 18]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x45jy"]
 _data = {
-"RESET": SubResource("Animation_wxsvn"),
-"attack1": SubResource("Animation_53b1p"),
 "idle": SubResource("Animation_vr4m0"),
 "jump_down": SubResource("Animation_kln1k"),
 "jump_up": SubResource("Animation_x78po"),
@@ -213,7 +118,6 @@ position = Vector2(0, 47)
 script = ExtResource("1_v56ng")
 
 [node name="collision" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(2, -64.5)
 shape = SubResource("RectangleShape2D_j6t3t")
 
@@ -234,8 +138,7 @@ libraries = {
 script = ExtResource("3_72x1j")
 
 [node name="Door2" type="Sprite2D" parent="Smoothing2D"]
-position = Vector2(-4, -88)
-rotation = 0.469686
+position = Vector2(-7, -88)
 scale = Vector2(3, 3)
 texture = ExtResource("4_ylbgg")
 hframes = 3
@@ -245,19 +148,21 @@ position = Vector2(0, -80)
 scale = Vector2(3, 3)
 texture = ExtResource("3_vqx7t")
 hframes = 19
-vframes = 4
-frame = 20
-
-[node name="Attack1Effect" type="Sprite2D" parent="Smoothing2D"]
-position = Vector2(92.2039, -83)
-scale = Vector2(3, 3)
-texture = ExtResource("5_cafkq")
-hframes = 5
-frame = 4
+frame = 14
 
 [node name="camera" parent="." instance=ExtResource("2_amrqj")]
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
-visible = false
 position = Vector2(-14, -98)
 occluder = SubResource("OccluderPolygon2D_uuac3")
+
+[node name="SFX" type="Node" parent="."]
+
+[node name="footstep" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("6_0u2oq")
+bus = &"SFX"
+
+[node name="jump_sound" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("7_ocl71")
+volume_db = 9.0
+bus = &"SFX"
