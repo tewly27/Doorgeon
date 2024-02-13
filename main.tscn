@@ -1,10 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://bnclhe841j5pd"]
+[gd_scene load_steps=13 format=3 uid="uid://bnclhe841j5pd"]
 
 [ext_resource type="Texture2D" uid="uid://cwalq6kn21ebe" path="res://door1.png" id="1_51ka1"]
 [ext_resource type="PackedScene" uid="uid://3dde03ktiua5" path="res://scenes/player/player.tscn" id="2_x27av"]
 [ext_resource type="Texture2D" uid="uid://bjjbtkskm3c6c" path="res://tile1.png" id="3_lbod8"]
 [ext_resource type="PackedScene" uid="uid://6btho3sqa0un" path="res://scenes/lights/candles.tscn" id="4_w7o8n"]
 [ext_resource type="PackedScene" uid="uid://bx3i5lghqmgq3" path="res://scenes/lights/street_lamp.tscn" id="5_xc1ul"]
+[ext_resource type="Texture2D" uid="uid://ccj7gg4cu0fn6" path="res://graphics/UI/hpBarBack.png" id="6_ww2sn"]
+[ext_resource type="Texture2D" uid="uid://c4duxhelo4cwv" path="res://graphics/UI/hpBarTop.png" id="7_nbooq"]
+[ext_resource type="Texture2D" uid="uid://dtoxas07yc1v" path="res://graphics/UI/hpBarMid.png" id="8_otdv4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l4v5r"]
 texture = ExtResource("3_lbod8")
@@ -269,3 +272,21 @@ position = Vector2(-265, -18)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_iqc8s")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer"]
+offset_left = 76.0
+offset_top = 6.0
+offset_right = 196.0
+offset_bottom = 46.0
+scale = Vector2(3, 3)
+min_value = 100.0
+value = 100.0
+stretch_margin_left = 40
+stretch_margin_top = 40
+stretch_margin_right = 40
+stretch_margin_bottom = 40
+texture_under = ExtResource("6_ww2sn")
+texture_over = ExtResource("7_nbooq")
+texture_progress = ExtResource("8_otdv4")

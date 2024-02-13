@@ -40,6 +40,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y += jump_velocity
 		attacking = true
 		$AttackTimer.start()
+		$SFX/attack1.play()
 	if $AttackTimer.time_left == 0:
 		attacking = false
 		
