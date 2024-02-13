@@ -1,0 +1,90 @@
+[gd_scene load_steps=9 format=3 uid="uid://bx26dcug647r3"]
+
+[ext_resource type="Script" path="res://scenes/enemies/enemy.gd" id="1_bjx8p"]
+[ext_resource type="Texture2D" uid="uid://swthsvvat8x4" path="res://graphics/enemies/enemy1.png" id="1_kpp2m"]
+[ext_resource type="Script" path="res://scenes/enemies/enemy_projectile_spawner.gd" id="3_gpv4w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dlmgk"]
+size = Vector2(55, 70)
+
+[sub_resource type="Animation" id="Animation_eu783"]
+resource_name = "walk"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("graphics:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 1]
+}
+
+[sub_resource type="Animation" id="Animation_uj46p"]
+resource_name = "idle"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("graphics:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_itals"]
+resource_name = "attack"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("graphics:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [3, 4, 5, 6, 7, 8, 9, 10]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pjjmy"]
+_data = {
+"attack": SubResource("Animation_itals"),
+"idle": SubResource("Animation_uj46p"),
+"walk": SubResource("Animation_eu783")
+}
+
+[node name="enemy" type="CharacterBody2D"]
+script = ExtResource("1_bjx8p")
+gravity = 2400.0
+attackRange = 300.0
+agroRange = 1000.0
+speed = 300.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(5.5, 25)
+shape = SubResource("RectangleShape2D_dlmgk")
+
+[node name="graphics" type="Sprite2D" parent="."]
+scale = Vector2(3, 3)
+texture = ExtResource("1_kpp2m")
+hframes = 11
+frame = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_pjjmy")
+}
+
+[node name="enemy_projectile_spawner" type="Node2D" parent="."]
+position = Vector2(0, -34)
+script = ExtResource("3_gpv4w")
