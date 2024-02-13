@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bv8ixagxmuh83"]
+[gd_scene load_steps=13 format=3 uid="uid://bv8ixagxmuh83"]
 
 [ext_resource type="Texture2D" uid="uid://cwalq6kn21ebe" path="res://door1.png" id="1_m6bnp"]
 [ext_resource type="Texture2D" uid="uid://rhodfy2mkl8u" path="res://graphics/Tile/tile2.png" id="2_sqfrq"]
@@ -2054,6 +2054,17 @@ physics_layer_0/collision_layer = 1
 physics_layer_1/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_r2uk7")
 
+[sub_resource type="Gradient" id="Gradient_w0x77"]
+offsets = PackedFloat32Array(0.427419, 0.625)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8165g"]
+gradient = SubResource("Gradient_w0x77")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [sub_resource type="Environment" id="Environment_iqc8s"]
 background_mode = 3
 glow_enabled = true
@@ -2067,7 +2078,7 @@ adjustment_brightness = 0.49
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 scale = Vector2(3, 3)
-color = Color(0, 0, 0, 1)
+color = Color(0.0745098, 0.0745098, 0.0745098, 1)
 
 [node name="Door1" type="Sprite2D" parent="."]
 visible = false
@@ -2088,12 +2099,12 @@ jump_velocity = -100.0
 gravity = 2400.0
 
 [node name="PointLight2D5" type="PointLight2D" parent="player"]
-position = Vector2(3, -67)
-scale = Vector2(3.44824, 3.44824)
-color = Color(1, 0.72549, 0.482353, 1)
+position = Vector2(4, -72)
+scale = Vector2(6.05782, 6.05782)
+color = Color(0.882353, 0.580392, 1, 1)
 energy = 0.7
 shadow_enabled = true
-texture = ExtResource("7_st4sc")
+texture = SubResource("GradientTexture2D_8165g")
 texture_scale = 0.4
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
