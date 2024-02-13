@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bnclhe841j5pd"]
+[gd_scene load_steps=14 format=3 uid="uid://bnclhe841j5pd"]
 
 [ext_resource type="Texture2D" uid="uid://cwalq6kn21ebe" path="res://door1.png" id="1_51ka1"]
 [ext_resource type="PackedScene" uid="uid://3dde03ktiua5" path="res://scenes/player/player.tscn" id="2_x27av"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://ccj7gg4cu0fn6" path="res://graphics/UI/hpBarBack.png" id="6_ww2sn"]
 [ext_resource type="Texture2D" uid="uid://c4duxhelo4cwv" path="res://graphics/UI/hpBarTop.png" id="7_nbooq"]
 [ext_resource type="Texture2D" uid="uid://dtoxas07yc1v" path="res://graphics/UI/hpBarMid.png" id="8_otdv4"]
+[ext_resource type="PackedScene" uid="uid://bx26dcug647r3" path="res://scenes/enemies/enemy.tscn" id="9_gv5bt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l4v5r"]
 texture = ExtResource("3_lbod8")
@@ -290,3 +291,7 @@ stretch_margin_bottom = 40
 texture_under = ExtResource("6_ww2sn")
 texture_over = ExtResource("7_nbooq")
 texture_progress = ExtResource("8_otdv4")
+
+[node name="enemy" parent="." node_paths=PackedStringArray("player") instance=ExtResource("9_gv5bt")]
+position = Vector2(373, -25)
+player = NodePath("../player")

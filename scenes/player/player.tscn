@@ -403,6 +403,7 @@ stream = ExtResource("6_0u2oq")
 
 [node name="attack1" type="AudioStreamPlayer2D" parent="SFX"]
 stream = ExtResource("8_av0nb")
+volume_db = -6.559
 
 [node name="jump_sound" type="AudioStreamPlayer2D" parent="SFX"]
 stream = ExtResource("7_ocl71")
