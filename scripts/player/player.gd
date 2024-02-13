@@ -31,10 +31,10 @@ func _physics_process(delta: float) -> void:
 	var tween = get_tree().create_tween()
 
 	tween.tween_property(self,"velocity:x",direction*speed,acceleration_time)
-	if !$Smoothing2D/sprite.flip_h and Input.is_action_just_pressed("move_left"):
-		velocity.x = 0
-	if $Smoothing2D/sprite.flip_h and Input.is_action_just_pressed("move_right"):
-		velocity.x = 0
+	if $Smoothing2D/sprite.flip_h and !Input.is_action_pressed("move_left"):
+		velocity.x *= 0.2
+	if !$Smoothing2D/sprite.flip_h and !Input.is_action_pressed("move_right"):
+		velocity.x *= 0.2
 	move_and_slide()
 	if Input.is_action_just_pressed("attack1") and $AttackTimer.time_left == 0:
 		velocity.y += jump_velocity
