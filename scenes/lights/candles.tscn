@@ -11,7 +11,7 @@ texture = ExtResource("1_kue32")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 color = Color(1, 0.627451, 0.027451, 1)
-energy = 0.62
+energy = 0.32
 shadow_enabled = true
 texture = ExtResource("2_oquyx")
 texture_scale = 0.2

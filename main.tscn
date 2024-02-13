@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bnclhe841j5pd"]
+[gd_scene load_steps=10 format=3 uid="uid://bnclhe841j5pd"]
 
 [ext_resource type="Texture2D" uid="uid://cwalq6kn21ebe" path="res://door1.png" id="1_51ka1"]
 [ext_resource type="PackedScene" uid="uid://3dde03ktiua5" path="res://scenes/player/player.tscn" id="2_x27av"]
@@ -221,6 +221,14 @@ sources/1 = SubResource("TileSetAtlasSource_l4v5r")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xg1kk"]
 size = Vector2(866, 107)
 
+[sub_resource type="Environment" id="Environment_iqc8s"]
+background_mode = 3
+glow_enabled = true
+glow_intensity = 0.26
+glow_strength = 1.04
+glow_bloom = 0.37
+glow_blend_mode = 0
+
 [node name="Node2D" type="Node2D"]
 
 [node name="Door1" type="Sprite2D" parent="."]
@@ -258,3 +266,6 @@ position = Vector2(-327, 48)
 
 [node name="street_lamp" parent="." instance=ExtResource("5_xc1ul")]
 position = Vector2(-265, -18)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_iqc8s")
