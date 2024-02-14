@@ -382,6 +382,7 @@ vframes = 4
 frame = 1
 
 [node name="Attack1Effect" type="Sprite2D" parent="Smoothing2D"]
+visible = false
 position = Vector2(133.333, -83)
 scale = Vector2(3, 3)
 texture = ExtResource("5_cafkq")
