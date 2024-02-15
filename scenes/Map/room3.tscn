@@ -1,17 +1,16 @@
-[gd_scene load_steps=17 format=3 uid="uid://j1076dplsbnb"]
+[gd_scene load_steps=16 format=3 uid="uid://brq38wu2sohpp"]
 
-[ext_resource type="Texture2D" uid="uid://rhodfy2mkl8u" path="res://graphics/Tile/tile2.png" id="1_rt313"]
-[ext_resource type="Texture2D" uid="uid://cwalq6kn21ebe" path="res://door1.png" id="2_jlwis"]
-[ext_resource type="Script" path="res://scenes/Map/Spikes.gd" id="2_puwfd"]
-[ext_resource type="PackedScene" uid="uid://3dde03ktiua5" path="res://scenes/player/player.tscn" id="3_4355f"]
-[ext_resource type="Texture2D" uid="uid://ccj7gg4cu0fn6" path="res://graphics/UI/hpBarBack.png" id="4_sdl1w"]
-[ext_resource type="Texture2D" uid="uid://c4duxhelo4cwv" path="res://graphics/UI/hpBarTop.png" id="5_vliyj"]
-[ext_resource type="Texture2D" uid="uid://dtoxas07yc1v" path="res://graphics/UI/hpBarMid.png" id="6_23pg0"]
-[ext_resource type="Texture2D" uid="uid://drpcv6dcbdjxd" path="res://graphics/2d_lights_and_shadows_neutral_point_light.webp" id="7_6ehc4"]
-[ext_resource type="Script" path="res://scenes/Map/HpBar.gd" id="8_4wwwq"]
+[ext_resource type="Texture2D" uid="uid://rhodfy2mkl8u" path="res://graphics/Tile/tile2.png" id="1_tjyf4"]
+[ext_resource type="Script" path="res://scenes/Map/Spikes.gd" id="2_w7rp4"]
+[ext_resource type="Texture2D" uid="uid://cwalq6kn21ebe" path="res://door1.png" id="3_knc2o"]
+[ext_resource type="PackedScene" uid="uid://3dde03ktiua5" path="res://scenes/player/player.tscn" id="4_vxssn"]
+[ext_resource type="Texture2D" uid="uid://ccj7gg4cu0fn6" path="res://graphics/UI/hpBarBack.png" id="5_3n6xh"]
+[ext_resource type="Texture2D" uid="uid://c4duxhelo4cwv" path="res://graphics/UI/hpBarTop.png" id="6_iskxl"]
+[ext_resource type="Texture2D" uid="uid://dtoxas07yc1v" path="res://graphics/UI/hpBarMid.png" id="7_bn7s6"]
+[ext_resource type="Texture2D" uid="uid://drpcv6dcbdjxd" path="res://graphics/2d_lights_and_shadows_neutral_point_light.webp" id="8_a7gti"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r2uk7"]
-texture = ExtResource("1_rt313")
+texture = ExtResource("1_tjyf4")
 texture_region_size = Vector2i(20, 20)
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -1283,7 +1282,7 @@ layer_0/tile_data = PackedInt32Array(131070, 262145, 6, 131071, 196609, 6, 65536
 
 [node name="Spikes" type="Area2D" parent="."]
 input_pickable = false
-script = ExtResource("2_puwfd")
+script = ExtResource("2_w7rp4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Spikes"]
 position = Vector2(1411.5, 99.5)
@@ -1300,9 +1299,9 @@ shape = SubResource("RectangleShape2D_3m082")
 [node name="Door1" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(85, -18)
-texture = ExtResource("2_jlwis")
+texture = ExtResource("3_knc2o")
 
-[node name="player" parent="." instance=ExtResource("3_4355f")]
+[node name="player" parent="." instance=ExtResource("4_vxssn")]
 position = Vector2(-761, 78)
 collision_mask = 3
 
@@ -1318,22 +1317,23 @@ texture_scale = 0.4
 environment = SubResource("Environment_iqc8s")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
-[node name="HpBar" type="TextureProgressBar" parent="CanvasLayer"]
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer"]
 offset_left = 76.0
 offset_top = 6.0
 offset_right = 196.0
 offset_bottom = 46.0
 scale = Vector2(3, 3)
+min_value = 100.0
 value = 100.0
 stretch_margin_left = 40
 stretch_margin_top = 40
 stretch_margin_right = 40
 stretch_margin_bottom = 40
-texture_under = ExtResource("4_sdl1w")
-texture_over = ExtResource("5_vliyj")
-texture_progress = ExtResource("6_23pg0")
-script = ExtResource("8_4wwwq")
+texture_under = ExtResource("5_3n6xh")
+texture_over = ExtResource("6_iskxl")
+texture_progress = ExtResource("7_bn7s6")
 
 [node name="Node2D" type="Node2D" parent="."]
 position = Vector2(-272, -39)
@@ -1343,7 +1343,7 @@ scale = Vector2(4.81494, 4.81494)
 color = Color(1, 0.619608, 0.215686, 1)
 energy = 0.9
 shadow_enabled = true
-texture = ExtResource("7_6ehc4")
+texture = ExtResource("8_a7gti")
 texture_scale = 0.4
 
 [node name="PointLight2D2" type="PointLight2D" parent="Node2D"]
@@ -1351,7 +1351,7 @@ position = Vector2(98.859, -260.232)
 color = Color(1, 0.619608, 0.215686, 1)
 energy = 0.9
 shadow_enabled = true
-texture = ExtResource("7_6ehc4")
+texture = ExtResource("8_a7gti")
 texture_scale = 0.4
 
 [node name="PointLight2D4" type="PointLight2D" parent="Node2D"]
@@ -1360,7 +1360,7 @@ scale = Vector2(0.383735, 0.383735)
 color = Color(1, 0.580392, 0, 1)
 energy = 0.39
 shadow_enabled = true
-texture = ExtResource("7_6ehc4")
+texture = ExtResource("8_a7gti")
 texture_scale = 0.4
 
 [node name="PointLight2D3" type="PointLight2D" parent="Node2D"]
@@ -1369,7 +1369,7 @@ scale = Vector2(0.351284, 0.351284)
 color = Color(1, 0.580392, 0, 1)
 energy = 0.39
 shadow_enabled = true
-texture = ExtResource("7_6ehc4")
+texture = ExtResource("8_a7gti")
 texture_scale = 0.4
 
 [node name="PointLight2D5" type="PointLight2D" parent="Node2D"]
@@ -1378,7 +1378,7 @@ scale = Vector2(0.351284, 0.351284)
 color = Color(1, 0.580392, 0, 1)
 energy = 0.39
 shadow_enabled = true
-texture = ExtResource("7_6ehc4")
+texture = ExtResource("8_a7gti")
 texture_scale = 0.4
 
 [node name="PointLight2D6" type="PointLight2D" parent="Node2D"]
@@ -1387,7 +1387,7 @@ scale = Vector2(0.351284, 0.351284)
 color = Color(1, 0.580392, 0, 1)
 energy = 0.39
 shadow_enabled = true
-texture = ExtResource("7_6ehc4")
+texture = ExtResource("8_a7gti")
 texture_scale = 0.4
 
 [node name="PointLight2D8" type="PointLight2D" parent="Node2D"]
@@ -1396,7 +1396,7 @@ scale = Vector2(0.351284, 0.351284)
 color = Color(1, 0.580392, 0, 1)
 energy = 0.39
 shadow_enabled = true
-texture = ExtResource("7_6ehc4")
+texture = ExtResource("8_a7gti")
 texture_scale = 0.4
 
 [node name="PointLight2D9" type="PointLight2D" parent="Node2D"]
@@ -1405,7 +1405,7 @@ scale = Vector2(0.351284, 0.351284)
 color = Color(1, 0.580392, 0, 1)
 energy = 0.39
 shadow_enabled = true
-texture = ExtResource("7_6ehc4")
+texture = ExtResource("8_a7gti")
 texture_scale = 0.4
 
 [node name="PointLight2D10" type="PointLight2D" parent="Node2D"]
@@ -1414,7 +1414,7 @@ scale = Vector2(0.351284, 0.351284)
 color = Color(1, 0.580392, 0, 1)
 energy = 0.39
 shadow_enabled = true
-texture = ExtResource("7_6ehc4")
+texture = ExtResource("8_a7gti")
 texture_scale = 0.4
 
 [node name="PointLight2D7" type="PointLight2D" parent="Node2D"]
@@ -1423,7 +1423,7 @@ scale = Vector2(0.530576, 0.530576)
 color = Color(1, 0.580392, 0, 1)
 energy = 0.39
 shadow_enabled = true
-texture = ExtResource("7_6ehc4")
+texture = ExtResource("8_a7gti")
 texture_scale = 0.4
 
 [connection signal="body_entered" from="Spikes" to="Spikes" method="_on_body_entered"]

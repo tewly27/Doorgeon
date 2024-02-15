@@ -1,15 +1,16 @@
-[gd_scene load_steps=13 format=3 uid="uid://bv8ixagxmuh83"]
+[gd_scene load_steps=14 format=3 uid="uid://bv8ixagxmuh83"]
 
-[ext_resource type="Texture2D" uid="uid://rhodfy2mkl8u" path="res://graphics/Tile/tile2.png" id="1_aivyd"]
-[ext_resource type="Texture2D" uid="uid://cwalq6kn21ebe" path="res://door1.png" id="2_whgbw"]
-[ext_resource type="PackedScene" uid="uid://3dde03ktiua5" path="res://scenes/player/player.tscn" id="3_rqmtw"]
-[ext_resource type="Texture2D" uid="uid://ccj7gg4cu0fn6" path="res://graphics/UI/hpBarBack.png" id="4_fx0bv"]
-[ext_resource type="Texture2D" uid="uid://c4duxhelo4cwv" path="res://graphics/UI/hpBarTop.png" id="5_aflxw"]
-[ext_resource type="Texture2D" uid="uid://dtoxas07yc1v" path="res://graphics/UI/hpBarMid.png" id="6_csyyh"]
-[ext_resource type="Texture2D" uid="uid://drpcv6dcbdjxd" path="res://graphics/2d_lights_and_shadows_neutral_point_light.webp" id="7_bpnrj"]
+[ext_resource type="Texture2D" uid="uid://rhodfy2mkl8u" path="res://graphics/Tile/tile2.png" id="1_bkdir"]
+[ext_resource type="Texture2D" uid="uid://cwalq6kn21ebe" path="res://door1.png" id="2_xy6im"]
+[ext_resource type="PackedScene" uid="uid://3dde03ktiua5" path="res://scenes/player/player.tscn" id="3_2v855"]
+[ext_resource type="Texture2D" uid="uid://ccj7gg4cu0fn6" path="res://graphics/UI/hpBarBack.png" id="4_dj87r"]
+[ext_resource type="Texture2D" uid="uid://c4duxhelo4cwv" path="res://graphics/UI/hpBarTop.png" id="5_3y5m4"]
+[ext_resource type="Texture2D" uid="uid://dtoxas07yc1v" path="res://graphics/UI/hpBarMid.png" id="6_k7gbk"]
+[ext_resource type="Script" path="res://scenes/Map/HpBar.gd" id="7_hh0f0"]
+[ext_resource type="Texture2D" uid="uid://drpcv6dcbdjxd" path="res://graphics/2d_lights_and_shadows_neutral_point_light.webp" id="7_md0h8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r2uk7"]
-texture = ExtResource("1_aivyd")
+texture = ExtResource("1_bkdir")
 texture_region_size = Vector2i(20, 20)
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -2089,9 +2090,9 @@ layer_0/tile_data = PackedInt32Array(131070, 262145, 6, 131071, 196609, 6, 65536
 [node name="Door1" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(85, -18)
-texture = ExtResource("2_whgbw")
+texture = ExtResource("2_xy6im")
 
-[node name="player" parent="." instance=ExtResource("3_rqmtw")]
+[node name="player" parent="." instance=ExtResource("3_2v855")]
 position = Vector2(-1, 78)
 
 [node name="PointLight2D5" type="PointLight2D" parent="player"]
@@ -2106,7 +2107,6 @@ texture_scale = 0.4
 environment = SubResource("Environment_iqc8s")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer"]
 offset_left = 76.0
@@ -2114,15 +2114,15 @@ offset_top = 6.0
 offset_right = 196.0
 offset_bottom = 46.0
 scale = Vector2(3, 3)
-min_value = 100.0
 value = 100.0
 stretch_margin_left = 40
 stretch_margin_top = 40
 stretch_margin_right = 40
 stretch_margin_bottom = 40
-texture_under = ExtResource("4_fx0bv")
-texture_over = ExtResource("5_aflxw")
-texture_progress = ExtResource("6_csyyh")
+texture_under = ExtResource("4_dj87r")
+texture_over = ExtResource("5_3y5m4")
+texture_progress = ExtResource("6_k7gbk")
+script = ExtResource("7_hh0f0")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(148, -34)
@@ -2130,7 +2130,7 @@ scale = Vector2(4.81494, 4.81494)
 color = Color(1, 0.619608, 0.215686, 1)
 energy = 0.9
 shadow_enabled = true
-texture = ExtResource("7_bpnrj")
+texture = ExtResource("7_md0h8")
 texture_scale = 0.4
 
 [node name="PointLight2D2" type="PointLight2D" parent="."]
@@ -2138,7 +2138,7 @@ position = Vector2(750, 44)
 color = Color(1, 0.580392, 0, 1)
 energy = 0.39
 shadow_enabled = true
-texture = ExtResource("7_bpnrj")
+texture = ExtResource("7_md0h8")
 texture_scale = 0.4
 
 [node name="PointLight2D4" type="PointLight2D" parent="."]
@@ -2147,7 +2147,7 @@ scale = Vector2(1.84766, 1.84766)
 color = Color(1, 0.580392, 0, 1)
 energy = 0.39
 shadow_enabled = true
-texture = ExtResource("7_bpnrj")
+texture = ExtResource("7_md0h8")
 texture_scale = 0.4
 
 [node name="PointLight2D3" type="PointLight2D" parent="."]
@@ -2156,7 +2156,7 @@ scale = Vector2(1.69141, 1.69141)
 color = Color(1, 0.580392, 0, 1)
 energy = 0.39
 shadow_enabled = true
-texture = ExtResource("7_bpnrj")
+texture = ExtResource("7_md0h8")
 texture_scale = 0.4
 
 [node name="PointLight2D5" type="PointLight2D" parent="."]
@@ -2165,5 +2165,5 @@ scale = Vector2(1.69141, 1.69141)
 color = Color(1, 0.580392, 0, 1)
 energy = 0.39
 shadow_enabled = true
-texture = ExtResource("7_bpnrj")
+texture = ExtResource("7_md0h8")
 texture_scale = 0.4
