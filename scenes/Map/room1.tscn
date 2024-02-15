@@ -2093,10 +2093,6 @@ texture = ExtResource("2_whgbw")
 
 [node name="player" parent="." instance=ExtResource("3_rqmtw")]
 position = Vector2(-1, 78)
-acceleration_time = 0.15
-speed = 600.0
-jump_velocity = -100.0
-gravity = 2400.0
 
 [node name="PointLight2D5" type="PointLight2D" parent="player"]
 position = Vector2(4, -72)

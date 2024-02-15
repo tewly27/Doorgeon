@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_v56ng"]
 [ext_resource type="PackedScene" uid="uid://bo0jt2pkyo23n" path="res://scenes/player/camera.tscn" id="2_amrqj"]
 [ext_resource type="Script" path="res://addons/smoothing/smoothing_2d.gd" id="3_72x1j"]
-[ext_resource type="Texture2D" uid="uid://b6htk26yjfngn" path="res://graphics/player/walk.png" id="3_vqx7t"]
+[ext_resource type="Texture2D" uid="uid://ddaagylavr4w7" path="res://graphics/player/charactersheet.png" id="4_newbi"]
 [ext_resource type="Texture2D" uid="uid://bl0pssxxbc6a8" path="res://graphics/door2.png" id="4_ylbgg"]
 [ext_resource type="Texture2D" uid="uid://dixw7mhdjtl0w" path="res://graphics/Attack1Effect.png" id="5_cafkq"]
 [ext_resource type="AudioStream" uid="uid://dhvv3nffji7ia" path="res://sounds/sfx/footsteps.wav" id="6_0u2oq"]
@@ -92,7 +92,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [20, 22, 24, 26, 28, 29, 20]
+"values": [20, 22, 24, 26, 28, 30, 20]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -170,7 +170,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [20, 22, 24, 26, 28, 29, 20]
+"values": [20, 22, 24, 26, 28, 30, 20]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -274,7 +274,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [17, 18]
+"values": [120, 121]
 }
 
 [sub_resource type="Animation" id="Animation_x78po"]
@@ -291,7 +291,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.15, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [14, 15, 16]
+"values": [82, 83, 84]
 }
 
 [sub_resource type="Animation" id="Animation_15wpn"]
@@ -376,14 +376,15 @@ hframes = 3
 [node name="sprite" type="Sprite2D" parent="Smoothing2D"]
 position = Vector2(0, -80)
 scale = Vector2(3, 3)
-texture = ExtResource("3_vqx7t")
-hframes = 19
-vframes = 4
-frame = 1
+texture = ExtResource("4_newbi")
+hframes = 20
+vframes = 7
+frame = 82
 
 [node name="Attack1Effect" type="Sprite2D" parent="Smoothing2D"]
 visible = false
 position = Vector2(133.333, -83)
+rotation = 3.14159
 scale = Vector2(3, 3)
 texture = ExtResource("5_cafkq")
 hframes = 5
@@ -397,18 +398,27 @@ occluder = SubResource("OccluderPolygon2D_uuac3")
 
 [node name="SFX" type="Node" parent="."]
 
-[node name="footstep" type="AudioStreamPlayer2D" parent="SFX"]
+[node name="footstep" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("6_0u2oq")
+volume_db = -14.054
+mix_target = 2
+bus = &"Music"
 
-[node name="attack1" type="AudioStreamPlayer2D" parent="SFX"]
+[node name="attack1" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("8_av0nb")
+volume_db = -14.054
+mix_target = 2
+bus = &"Music"
 
-[node name="jump_sound" type="AudioStreamPlayer2D" parent="SFX"]
+[node name="jump_sound" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("7_ocl71")
 volume_db = 9.0
+mix_target = 2
+bus = &"Music"
 
 [node name="music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_h74on")
 volume_db = -14.054
 autoplay = true
+mix_target = 2
 bus = &"Music"

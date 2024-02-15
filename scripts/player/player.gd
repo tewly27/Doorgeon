@@ -1,9 +1,9 @@
 extends CharacterBody2D
 
-@export var acceleration_time: float
-@export var speed: float
-@export var jump_velocity: float
-@export var gravity: float
+var acceleration_time: =0.15
+var speed: float = 600
+var jump_velocity: float = -120
+var gravity: float = 2400
 var direction: float
 var inJump = false
 var attacking = false
@@ -69,3 +69,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			$AnimationPlayer.play("idle")
 
+
+
+func _on_spikes_body_entered(body):
+	print("aaa")
