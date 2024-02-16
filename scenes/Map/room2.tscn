@@ -1,7 +1,6 @@
-[gd_scene load_steps=22 format=3 uid="uid://j1076dplsbnb"]
+[gd_scene load_steps=21 format=3 uid="uid://j1076dplsbnb"]
 
 [ext_resource type="Texture2D" uid="uid://rhodfy2mkl8u" path="res://graphics/Tile/tile2.png" id="1_rt313"]
-[ext_resource type="Texture2D" uid="uid://cwalq6kn21ebe" path="res://door1.png" id="2_jlwis"]
 [ext_resource type="Script" path="res://scenes/Map/Spikes.gd" id="2_puwfd"]
 [ext_resource type="PackedScene" uid="uid://3dde03ktiua5" path="res://scenes/player/player.tscn" id="3_4355f"]
 [ext_resource type="Texture2D" uid="uid://ccj7gg4cu0fn6" path="res://graphics/UI/hpBarBack.png" id="4_sdl1w"]
@@ -9,7 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://dtoxas07yc1v" path="res://graphics/UI/hpBarMid.png" id="6_23pg0"]
 [ext_resource type="Texture2D" uid="uid://drpcv6dcbdjxd" path="res://graphics/2d_lights_and_shadows_neutral_point_light.webp" id="7_6ehc4"]
 [ext_resource type="Script" path="res://scenes/Map/HpBar.gd" id="8_4wwwq"]
-[ext_resource type="Script" path="res://scenes/Map/Door.gd" id="10_2ev1q"]
+[ext_resource type="PackedScene" uid="uid://ncn5ifk5cd0f" path="res://scenes/enemies/enemy_2.tscn" id="10_8dl41"]
+[ext_resource type="PackedScene" uid="uid://btsaj217s4cos" path="res://door.tscn" id="10_xvi14"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r2uk7"]
 texture = ExtResource("1_rt313")
@@ -1308,9 +1308,6 @@ _data = {
 "dissolve": SubResource("Animation_8ami7")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_upmiw"]
-size = Vector2(60, 101)
-
 [node name="Node2D" type="Node2D"]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
@@ -1339,14 +1336,8 @@ shape = SubResource("RectangleShape2D_sifaw")
 position = Vector2(1951, 103)
 shape = SubResource("RectangleShape2D_3m082")
 
-[node name="Door1" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(85, -18)
-texture = ExtResource("2_jlwis")
-
 [node name="player" parent="." instance=ExtResource("3_4355f")]
 position = Vector2(-761, 78)
-collision_mask = 3
 
 [node name="PointLight2D5" type="PointLight2D" parent="player"]
 position = Vector2(4, -72)
@@ -1481,18 +1472,25 @@ shadow_enabled = true
 texture = ExtResource("7_6ehc4")
 texture_scale = 0.4
 
-[node name="Door" type="Area2D" parent="."]
-position = Vector2(-841, 7)
-script = ExtResource("10_2ev1q")
-x = 897
-y = 63
-scene = "res://scenes/Map/room1.tscn"
+[node name="Enemy2" parent="." instance=ExtResource("10_8dl41")]
+position = Vector2(297, -385)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Door"]
-position = Vector2(1, -1.5)
-shape = SubResource("RectangleShape2D_upmiw")
+[node name="Enemy3" parent="." instance=ExtResource("10_8dl41")]
+position = Vector2(-708, -1167)
+
+[node name="Enemy4" parent="." instance=ExtResource("10_8dl41")]
+position = Vector2(525, -1260)
+
+[node name="Enemy5" parent="." instance=ExtResource("10_8dl41")]
+position = Vector2(1549, 36)
+
+[node name="Door" parent="." instance=ExtResource("10_xvi14")]
+
+[node name="Door3" parent="." instance=ExtResource("10_xvi14")]
+position = Vector2(838, -1251)
+x = -841
+y = 57
+scene = "res://scenes/Map/room3.tscn"
 
 [connection signal="body_entered" from="Spikes" to="Spikes" method="_on_body_entered"]
 [connection signal="body_exited" from="Spikes" to="Spikes" method="_on_body_exited"]
-[connection signal="body_entered" from="Door" to="Door" method="_on_body_entered"]
-[connection signal="body_exited" from="Door" to="Door" method="_on_body_exited"]

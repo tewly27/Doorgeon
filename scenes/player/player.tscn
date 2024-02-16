@@ -609,6 +609,7 @@ polygon = PackedVector2Array(31, -6, 36, 71, -4, 71, 10, -6)
 
 [node name="player" type="CharacterBody2D"]
 position = Vector2(0, 47)
+collision_layer = 8
 script = ExtResource("1_v56ng")
 
 [node name="collision" type="CollisionShape2D" parent="."]
@@ -620,12 +621,13 @@ wait_time = 0.1
 one_shot = true
 
 [node name="JumpTimer" type="Timer" parent="."]
-wait_time = 0.15
+wait_time = 0.2
 one_shot = true
 
 [node name="AttackTimer" type="Timer" parent="."]
 wait_time = 0.4
 one_shot = true
+autostart = true
 
 [node name="ComboTimer" type="Timer" parent="."]
 wait_time = 0.6
@@ -655,6 +657,7 @@ texture = ExtResource("4_ylbgg")
 hframes = 3
 
 [node name="Hitbox" type="Area2D" parent="Smoothing2D/Door2"]
+collision_mask = 3
 script = ExtResource("4_qaxyn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Smoothing2D/Door2/Hitbox"]
@@ -679,6 +682,7 @@ hframes = 5
 frame = 4
 
 [node name="camera" parent="." instance=ExtResource("2_amrqj")]
+verticalMoveTime = 0.3
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 visible = false

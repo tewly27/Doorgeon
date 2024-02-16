@@ -2,22 +2,23 @@ extends CharacterBody2D
 
 var acceleration_time: =0.15
 var speed: float = 600
-var jump_velocity: float = -120
+var jump_velocity: float = -100
 var gravity: float = 2400
 var direction: float
 var inJump = false
-var attacking = false
+var attacking = true
 var attackCombo = 0
 var stun = false
 func _ready():
 	position.x = Global.location_x
 	position.y = Global.location_y
+	Global.player = self
 	Global.damageTaken.connect(damageTaken)
 	
 func damageTaken():
 	$AnimationPlayer2.play("gethit")
 	$SFX/hurt.playing = true
-	velocity.x = -600 if $Smoothing2D/sprite.flip_h else 600
+	velocity.x = 300 if $Smoothing2D/sprite.flip_h else -300
 	velocity.y = -600
 	$StunTimer.start()
 	
@@ -31,7 +32,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y += gravity * delta
 		
 	if $StunTimer.time_left != 0:
-
+		velocity.x = 300 if $Smoothing2D/sprite.flip_h else -300
 		move_and_slide()
 		return
 		
@@ -44,7 +45,8 @@ func _physics_process(delta: float) -> void:
 	if is_on_floor() and inJump and velocity.y == 0:
 		inJump = false
 	if Input.is_action_pressed("jump") and inJump and $JumpTimer.time_left != 0:
-		velocity.y += jump_velocity
+		velocity.y +=  jump_velocity
+	velocity.y = clampf(velocity.y,-2000,2000)
 
 	direction = Input.get_axis("move_left", "move_right")
 	var tween = get_tree().create_tween()

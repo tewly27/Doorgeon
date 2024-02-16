@@ -18,4 +18,5 @@ func _on_body_entered(body):
 		Global.onSpike+=1
 
 func _on_body_exited(body):
-	Global.onSpike-=1
+	if body.name == "player":
+		Global.onSpike-=1

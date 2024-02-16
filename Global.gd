@@ -5,7 +5,7 @@ var iframe = 0
 var onSpike = 0
 var location_x = 0
 var location_y = 0
-
+var player : CharacterBody2D
 signal damageTaken
 
 # Called when the node enters the scene tree for the first time.

@@ -2093,6 +2093,7 @@ layer_0/tile_data = PackedInt32Array(131070, 262145, 6, 131071, 196609, 6, 65536
 
 [node name="Door" type="Area2D" parent="."]
 position = Vector2(898, 11)
+collision_mask = 9
 script = ExtResource("2_tjay4")
 x = -839
 y = 59
