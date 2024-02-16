@@ -14,7 +14,7 @@ func _process(delta):
 
 func _on_body_entered(body):
 	if body.name == "player":
-		Global.takeDamage(1)
+		#Global.takeDamage(1)
 		Global.onSpike+=1
 
 func _on_body_exited(body):

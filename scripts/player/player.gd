@@ -7,15 +7,34 @@ var gravity: float = 2400
 var direction: float
 var inJump = false
 var attacking = false
-
+var attackCombo = 0
+var stun = false
+func _ready():
+	position.x = Global.location_x
+	position.y = Global.location_y
+	Global.damageTaken.connect(damageTaken)
+	
+func damageTaken():
+	$AnimationPlayer2.play("gethit")
+	$SFX/hurt.playing = true
+	velocity.x = -600 if $Smoothing2D/sprite.flip_h else 600
+	velocity.y = -600
+	$StunTimer.start()
+	
 func _physics_process(delta: float) -> void:
+	
 	# Add the gravity.
 	if not is_on_floor():
 		#if the timer isn't running and you just began to fall, start coyote timer
 		if $CoyoteTimer.time_left == 0 and (velocity.y < 100 and velocity.y > 0):
 			$CoyoteTimer.start()
 		velocity.y += gravity * delta
+		
+	if $StunTimer.time_left != 0:
 
+		move_and_slide()
+		return
+		
 	# either if you are on ground or in coyote time, jump on button press
 	if Input.is_action_just_pressed("jump") and (is_on_floor() or $CoyoteTimer.time_left != 0) and not inJump:
 		$JumpTimer.start()
@@ -35,21 +54,36 @@ func _physics_process(delta: float) -> void:
 		velocity.x *= 0.2
 	if !$Smoothing2D/sprite.flip_h and !Input.is_action_pressed("move_right"):
 		velocity.x *= 0.2
-	move_and_slide()
+	move_and_slide()	
+	
+	if $AttackTimer.time_left == 0:
+		attacking = false
+		if attackCombo >= 2:
+			attackCombo = 0
 	if Input.is_action_just_pressed("attack1") and $AttackTimer.time_left == 0:
 		velocity.y += jump_velocity
 		attacking = true
+		attackCombo += 1
+		$ComboTimer.start()
 		$AttackTimer.start()
-		$SFX/attack1.play()
-	if $AttackTimer.time_left == 0:
-		attacking = false
+		$SFX/attack1.play()		
+		if attackCombo == 1:
+			if !$Smoothing2D/sprite.flip_h:
+				$AnimationPlayer.play("attack1")
+			else :
+				$AnimationPlayer.play("attack1_2")
+		if attackCombo == 2:
+			if !$Smoothing2D/sprite.flip_h:
+				$AnimationPlayer.play("attack2")
+			else :
+				$AnimationPlayer.play("attack2_2")
+				
+
+	if $ComboTimer.time_left == 0:
+		attackCombo = 0
 		
 	#animation
 	if attacking:
-		if !$Smoothing2D/sprite.flip_h:
-			$AnimationPlayer.play("attack1")
-		else :
-			$AnimationPlayer.play("attack1_2")
 		return
 	if direction > 0:
 		$Smoothing2D/sprite.flip_h = false

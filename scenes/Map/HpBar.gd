@@ -12,4 +12,3 @@ func _process(delta):
 	
 func updateHp():
 	value = 20 * Global.playerHp
-	print("aaa")

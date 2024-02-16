@@ -8,6 +8,7 @@ extends Node2D
 @export var y_follow = true
 @export var x_follow = true
 var vertical_look_direction: float
+var hold_y = 0
 func _ready() -> void:
 	pass
 
@@ -21,10 +22,17 @@ func _process(delta: float) -> void:
 		tween.tween_property(self,"global_position:x",player.global_position.x+player.direction*aheadDistance,moveTime)
 	
 	#y axis movement
+	
 	vertical_look_direction = Input.get_axis("look_up","look_down")
+	if vertical_look_direction != 0:
+		hold_y += delta
+	else:
+		hold_y = 0
+
+		
 	if y_follow:
 		if vertical_look_direction:
-			tween.tween_property(self,"global_position:y",player.global_position.y+vertical_offset+vertical_look_direction*aheadDistance,verticalMoveTime)
+			tween.tween_property(self,"global_position:y",player.global_position.y+vertical_offset+(vertical_look_direction*aheadDistance * 1 if hold_y > 0.5 else 0),verticalMoveTime)
 		
 		else:
 			tween.tween_property(self,"global_position:y",player.global_position.y+vertical_offset,verticalMoveTime)

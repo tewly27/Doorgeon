@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://k1u0dfjkiya7"]
+
+[ext_resource type="AudioStream" uid="uid://bsif7ofhpwq3x" path="res://sounds/music/doorgeon-song1.mp3" id="1_tj6lg"]
+
+[node name="music" type="AudioStreamPlayer"]
+stream = ExtResource("1_tj6lg")
+volume_db = -14.054
+autoplay = true
+mix_target = 2
+bus = &"Music"
