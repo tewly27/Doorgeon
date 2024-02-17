@@ -3,24 +3,30 @@ extends CharacterBody2D
 var acceleration_time: =0.15
 var speed: float = 600
 var jump_velocity: float = -100
+var dashRange: float = 400
 var gravity: float = 2400
 var direction: float
 var inJump = false
 var attacking = true
 var attackCombo = 0
 var stun = false
+var dashTo : Vector2
 func _ready():
 	position.x = Global.location_x
 	position.y = Global.location_y
 	Global.player = self
 	Global.damageTaken.connect(damageTaken)
+	$camera.position = position + Vector2(0,-150)
 	
 func damageTaken():
 	$AnimationPlayer2.play("gethit")
 	$SFX/hurt.playing = true
-	velocity.x = 300 if $Smoothing2D/sprite.flip_h else -300
+	velocity.x = 150 if $Smoothing2D/sprite.flip_h else -150
 	velocity.y = -600
 	$StunTimer.start()
+
+#func _draw():
+	#draw_line(position + Vector2(0,-78), position + Vector2(-250 if $Smoothing2D/sprite.flip_h else 250, -78),Color.WHITE)
 	
 func _physics_process(delta: float) -> void:
 	
@@ -32,9 +38,29 @@ func _physics_process(delta: float) -> void:
 		velocity.y += gravity * delta
 		
 	if $StunTimer.time_left != 0:
-		velocity.x = 300 if $Smoothing2D/sprite.flip_h else -300
+		velocity.x = 150 if $Smoothing2D/sprite.flip_h else -150
 		move_and_slide()
 		return
+	if $DashTimer.time_left != 0:
+		$AnimationPlayer.play("dash")
+		if $DashTimer2.time_left == 0:
+			position = dashTo
+		return
+		
+	if Global.dash and Input.is_action_just_pressed("dash")	 :
+		var space_state = get_world_2d().direct_space_state
+		# use global coordinates, not local to node
+		var query = PhysicsRayQueryParameters2D.create(position+Vector2(0,-78), position + Vector2(-dashRange if $Smoothing2D/sprite.flip_h else dashRange, -78),collision_mask,[$collision])
+		var result = space_state.intersect_ray(query)
+		if result:
+			dashTo = result.position - Vector2(-50 if $Smoothing2D/sprite.flip_h else 50, -78)
+		else :
+			dashTo = position + Vector2(-dashRange if $Smoothing2D/sprite.flip_h else dashRange, 0)
+		$DashTimer.start()
+		$DashTimer2.start()
+		$AnimationPlayer.play("RESET")
+		#$AnimationPlayer.play("dash")
+		$SFX/dash.playing = true
 		
 	# either if you are on ground or in coyote time, jump on button press
 	if Input.is_action_just_pressed("jump") and (is_on_floor() or $CoyoteTimer.time_left != 0) and not inJump:
@@ -68,13 +94,15 @@ func _physics_process(delta: float) -> void:
 		attackCombo += 1
 		$ComboTimer.start()
 		$AttackTimer.start()
-		$SFX/attack1.play()		
+		
 		if attackCombo == 1:
+			$SFX/attack1.play()		
 			if !$Smoothing2D/sprite.flip_h:
 				$AnimationPlayer.play("attack1")
 			else :
 				$AnimationPlayer.play("attack1_2")
 		if attackCombo == 2:
+			$SFX/attack2.play()		
 			if !$Smoothing2D/sprite.flip_h:
 				$AnimationPlayer.play("attack2")
 			else :

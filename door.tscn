@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://btsaj217s4cos"]
+[gd_scene load_steps=4 format=3 uid="uid://btsaj217s4cos"]
 
 [ext_resource type="Script" path="res://scenes/Map/Door.gd" id="1_xvr00"]
+[ext_resource type="FontFile" uid="uid://snvqac2dysyx" path="res://PixelifySans-VariableFont_wght.ttf" id="2_3yv87"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_upmiw"]
 size = Vector2(60, 101)
@@ -16,6 +17,30 @@ scene = "res://scenes/Map/room1.tscn"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, -1.5)
 shape = SubResource("RectangleShape2D_upmiw")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = -46.0
+offset_top = -103.0
+offset_right = 49.0
+offset_bottom = -64.0
+theme_override_fonts/font = ExtResource("2_3yv87")
+theme_override_font_sizes/font_size = 32
+text = "Enter"
+
+[node name="ColorRect" type="ColorRect" parent="Label"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 36.0
+offset_right = 84.0
+offset_bottom = 38.0
+
+[node name="ColorRect2" type="ColorRect" parent="Label"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 2.0
+offset_right = 83.0
+offset_bottom = 4.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

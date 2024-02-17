@@ -4,13 +4,15 @@ extends CharacterBody2D
 const SPEED = 300
 const JUMP_VELOCITY = -400.0
 var startPos: Vector2
-var range = 250
+var rangeAgro = 350
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = 2400
 var hp: int = 5
 var die = false
 var patrol = false
+var dieTime = 4
 func _ready():
+	dieTime = 4
 	startPos = position
 
 func takeDamage(damage :int):
@@ -22,8 +24,10 @@ func takeDamage(damage :int):
 		$SFX/hit.playing = true
 		if hp <= 0:
 			$AnimationPlayer.play("die")
+			$AnimationPlayer2.play("die")
 			die = true;
 			motion_mode = CharacterBody2D.MOTION_MODE_GROUNDED
+			
 	
 
 func _physics_process(delta):
@@ -41,17 +45,20 @@ func _physics_process(delta):
 		
 	if die:
 		velocity*=0.97
+		dieTime-=delta
+		if dieTime <= 0:
+			queue_free()
 		move_and_slide()
 		return
-	if (Global.player.position - position).length() < range:
+	if (Global.player.position - position).length() < rangeAgro:
 		velocity.x = SPEED if Global.player.position.x -75 > position.x else -SPEED
-		range = 500
+		rangeAgro = 500
 	else :
 		if (startPos - position).length() > 20:
-			velocity.x = SPEED/2 if startPos.x > position.x else -SPEED/2
+			velocity.x = SPEED/2.0 if startPos.x > position.x else -SPEED/2.0
 		else :
 			velocity.x = 0
-		range = 250
+		rangeAgro = 350
 		
 	if velocity.length() > 0:
 		$AnimationPlayer.play("run")
