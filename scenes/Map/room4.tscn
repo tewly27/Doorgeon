@@ -1,18 +1,18 @@
-[gd_scene load_steps=23 format=3 uid="uid://ocqvgoqthrgo"]
+[gd_scene load_steps=21 format=3 uid="uid://oqgnjqdyhj7e"]
 
 [ext_resource type="Texture2D" uid="uid://rhodfy2mkl8u" path="res://graphics/Tile/tile2.png" id="1_va3wa"]
 [ext_resource type="Script" path="res://scenes/Map/Spikes.gd" id="2_a86aw"]
 [ext_resource type="PackedScene" uid="uid://3dde03ktiua5" path="res://scenes/player/player.tscn" id="3_0cyu7"]
-[ext_resource type="Texture2D" uid="uid://ccj7gg4cu0fn6" path="res://graphics/UI/hpBarBack.png" id="4_hot6m"]
-[ext_resource type="Texture2D" uid="uid://c4duxhelo4cwv" path="res://graphics/UI/hpBarTop.png" id="5_hu1bh"]
-[ext_resource type="Texture2D" uid="uid://dtoxas07yc1v" path="res://graphics/UI/hpBarMid.png" id="6_i2een"]
-[ext_resource type="Script" path="res://scenes/Map/HpBar.gd" id="7_kykc1"]
 [ext_resource type="Texture2D" uid="uid://drpcv6dcbdjxd" path="res://graphics/2d_lights_and_shadows_neutral_point_light.webp" id="8_8yyw4"]
 [ext_resource type="PackedScene" uid="uid://btsaj217s4cos" path="res://door.tscn" id="9_y2ybk"]
 [ext_resource type="PackedScene" uid="uid://bpafafj6m5f62" path="res://scenes/enemies/enemy_3.tscn" id="10_coq1a"]
+[ext_resource type="PackedScene" uid="uid://mrbjblj6bi4j" path="res://canvas_layer.tscn" id="10_m1c47"]
 [ext_resource type="PackedScene" uid="uid://ncn5ifk5cd0f" path="res://scenes/enemies/enemy_2.tscn" id="11_ltlcn"]
+[ext_resource type="Script" path="res://scenes/Map/Item2.gd" id="11_ykvlw"]
+[ext_resource type="Texture2D" uid="uid://bjdihdg1paa6l" path="res://graphics/UI/doorItem.png" id="12_fmdeq"]
 [ext_resource type="Script" path="res://scenes/Map/MusicChanger.gd" id="12_x5ds7"]
 [ext_resource type="AudioStream" uid="uid://bsif7ofhpwq3x" path="res://sounds/music/doorgeon-song1.mp3" id="13_jlhlk"]
+[ext_resource type="FontFile" uid="uid://snvqac2dysyx" path="res://PixelifySans-VariableFont_wght.ttf" id="13_v3ftx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r2uk7"]
 texture = ExtResource("1_va3wa")
@@ -1270,43 +1270,8 @@ glow_bloom = 0.18
 glow_blend_mode = 0
 adjustment_brightness = 0.49
 
-[sub_resource type="Animation" id="Animation_05u1a"]
-resource_name = "RESET"
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_8ami7"]
-resource_name = "dissolve"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_i00tq"]
-_data = {
-"RESET": SubResource("Animation_05u1a"),
-"dissolve": SubResource("Animation_8ami7")
-}
+[sub_resource type="CircleShape2D" id="CircleShape2D_jxueo"]
+radius = 87.0057
 
 [node name="Node2D" type="Node2D"]
 
@@ -1343,37 +1308,6 @@ texture_scale = 0.4
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_iqc8s")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="HpBar" type="TextureProgressBar" parent="CanvasLayer"]
-offset_left = 76.0
-offset_top = 6.0
-offset_right = 196.0
-offset_bottom = 46.0
-scale = Vector2(3, 3)
-value = 100.0
-stretch_margin_left = 40
-stretch_margin_top = 40
-stretch_margin_right = 40
-stretch_margin_bottom = 40
-texture_under = ExtResource("4_hot6m")
-texture_over = ExtResource("5_hu1bh")
-texture_progress = ExtResource("6_i2een")
-script = ExtResource("7_kykc1")
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-modulate = Color(1, 1, 1, 0)
-offset_left = -19.0
-offset_top = -18.0
-offset_right = 1167.0
-offset_bottom = 661.0
-color = Color(0, 0, 0, 1)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
-libraries = {
-"": SubResource("AnimationLibrary_i00tq")
-}
 
 [node name="Node2D" type="Node2D" parent="."]
 position = Vector2(-272, -39)
@@ -1466,5 +1400,57 @@ script = ExtResource("12_x5ds7")
 music = ExtResource("13_jlhlk")
 v = -14
 
+[node name="Item" type="Area2D" parent="."]
+position = Vector2(-2428, 1020)
+collision_mask = 9
+script = ExtResource("11_ykvlw")
+
+[node name="DoorItem" type="Sprite2D" parent="Item"]
+self_modulate = Color(0.701961, 0.396078, 0.811765, 1)
+position = Vector2(0, -24)
+scale = Vector2(6, 6)
+texture = ExtResource("12_fmdeq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Item"]
+shape = SubResource("CircleShape2D_jxueo")
+
+[node name="Label" type="Label" parent="Item"]
+offset_left = -141.0
+offset_top = -105.0
+offset_right = 153.0
+offset_bottom = -66.0
+theme_override_fonts/font = ExtResource("13_v3ftx")
+theme_override_font_sizes/font_size = 32
+text = "Obtain Double Jump"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="Item/Label"]
+layout_mode = 0
+offset_left = 29.0
+offset_top = 36.0
+offset_right = 247.0
+offset_bottom = 38.0
+
+[node name="ColorRect2" type="ColorRect" parent="Item/Label"]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 2.0
+offset_right = 249.0
+offset_bottom = 4.0
+
+[node name="PointLight2D" type="PointLight2D" parent="Item"]
+position = Vector2(0, -25)
+scale = Vector2(3.575, 3.575)
+color = Color(0.87451, 0.329412, 1, 1)
+energy = 0.9
+shadow_enabled = true
+texture = ExtResource("8_8yyw4")
+texture_scale = 0.4
+
+[node name="CanvasLayer" parent="." instance=ExtResource("10_m1c47")]
+
 [connection signal="body_entered" from="Spikes" to="Spikes" method="_on_body_entered"]
 [connection signal="body_exited" from="Spikes" to="Spikes" method="_on_body_exited"]
+[connection signal="body_entered" from="Item" to="Item" method="_on_body_entered"]
+[connection signal="body_exited" from="Item" to="Item" method="_on_body_exited"]

@@ -1,10 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://bnclhe841j5pd"]
+[gd_scene load_steps=7 format=3 uid="uid://bnclhe841j5pd"]
 
 [ext_resource type="FontFile" uid="uid://snvqac2dysyx" path="res://PixelifySans-VariableFont_wght.ttf" id="1_yxbp6"]
 [ext_resource type="Script" path="res://Button1.gd" id="2_aqt1t"]
 [ext_resource type="Texture2D" uid="uid://d2ebaaf3abc4x" path="res://graphics/Doorvania.png" id="3_3jal7"]
+[ext_resource type="Script" path="res://scenes/Map/MusicChanger.gd" id="4_br6ma"]
+[ext_resource type="Script" path="res://CheckBox.gd" id="4_jno74"]
 
-[sub_resource type="Environment" id="Environment_iqc8s"]
+[sub_resource type="Environment" id="Environment_xy1h6"]
 background_mode = 3
 glow_enabled = true
 glow_intensity = 0.26
@@ -14,12 +16,12 @@ glow_blend_mode = 0
 
 [node name="Node2D" type="Node2D"]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_iqc8s")
+[node name="WorldEnvironment2" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_xy1h6")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
 
-[node name="Button" type="Button" parent="CanvasLayer"]
+[node name="Button" type="Button" parent="CanvasLayer2"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -36,8 +38,9 @@ theme_override_fonts/font = ExtResource("1_yxbp6")
 theme_override_font_sizes/font_size = 36
 text = "Play"
 script = ExtResource("2_aqt1t")
+metadata/_edit_use_anchors_ = true
 
-[node name="Button2" type="Button" parent="CanvasLayer"]
+[node name="Button2" type="Button" parent="CanvasLayer2"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -55,8 +58,9 @@ theme_override_font_sizes/font_size = 36
 text = "New Game"
 script = ExtResource("2_aqt1t")
 newGame = true
+metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="CanvasLayer"]
+[node name="Label" type="Label" parent="CanvasLayer2"]
 visible = false
 offset_left = 836.0
 offset_top = 591.0
@@ -68,7 +72,7 @@ text = "Doorvania"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer2"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -81,6 +85,33 @@ offset_bottom = -15.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_3jal7")
+metadata/_edit_use_anchors_ = true
 
-[connection signal="button_down" from="CanvasLayer/Button" to="CanvasLayer/Button" method="_on_button_down"]
-[connection signal="button_down" from="CanvasLayer/Button2" to="CanvasLayer/Button2" method="_on_button_down"]
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer2"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 192.0
+grow_vertical = 0
+color = Color(0.447059, 0.447059, 0.447059, 1)
+
+[node name="CheckBox" type="CheckBox" parent="CanvasLayer2"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 192.0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_yxbp6")
+theme_override_font_sizes/font_size = 24
+text = "Easy mode"
+script = ExtResource("4_jno74")
+
+[node name="MusicChanger" type="Node" parent="."]
+script = ExtResource("4_br6ma")
+v = -14
+
+[connection signal="button_down" from="CanvasLayer2/Button" to="CanvasLayer2/Button" method="_on_button_down"]
+[connection signal="button_down" from="CanvasLayer2/Button2" to="CanvasLayer2/Button2" method="_on_button_down"]
+[connection signal="toggled" from="CanvasLayer2/CheckBox" to="CanvasLayer2/CheckBox" method="_on_toggled"]

@@ -11,6 +11,7 @@ var attacking = true
 var attackCombo = 0
 var stun = false
 var dashTo : Vector2
+var doubleJump = false
 func _ready():
 	position.x = Global.location_x
 	position.y = Global.location_y
@@ -26,7 +27,8 @@ func damageTaken():
 	$StunTimer.start()
 
 #func _draw():
-	#draw_line(position + Vector2(0,-78), position + Vector2(-250 if $Smoothing2D/sprite.flip_h else 250, -78),Color.WHITE)
+	#draw_line(position + Vector2(0,-93), position + Vector2(-250 if $Smoothing2D/sprite.flip_h else 250, -93),Color.WHITE)
+	#draw_line(position + Vector2(0,-33), position + Vector2(-250 if $Smoothing2D/sprite.flip_h else 250, -33),Color.WHITE)
 	
 func _physics_process(delta: float) -> void:
 	
@@ -36,6 +38,8 @@ func _physics_process(delta: float) -> void:
 		if $CoyoteTimer.time_left == 0 and (velocity.y < 100 and velocity.y > 0):
 			$CoyoteTimer.start()
 		velocity.y += gravity * delta
+	if  is_on_floor():
+		doubleJump = true
 		
 	if $StunTimer.time_left != 0:
 		velocity.x = 150 if $Smoothing2D/sprite.flip_h else -150
@@ -49,11 +53,16 @@ func _physics_process(delta: float) -> void:
 		
 	if Global.dash and Input.is_action_just_pressed("dash")	 :
 		var space_state = get_world_2d().direct_space_state
+		var space_state2 = get_world_2d().direct_space_state
 		# use global coordinates, not local to node
-		var query = PhysicsRayQueryParameters2D.create(position+Vector2(0,-78), position + Vector2(-dashRange if $Smoothing2D/sprite.flip_h else dashRange, -78),collision_mask,[$collision])
+		var query = PhysicsRayQueryParameters2D.create(position+Vector2(0,-33), position + Vector2(-dashRange if $Smoothing2D/sprite.flip_h else dashRange, -33),collision_mask,[$collision])
 		var result = space_state.intersect_ray(query)
+		var query2 = PhysicsRayQueryParameters2D.create(position+Vector2(0,-93), position + Vector2(-dashRange if $Smoothing2D/sprite.flip_h else dashRange, -93),collision_mask,[$collision])
+		var result2 = space_state2.intersect_ray(query2)
 		if result:
-			dashTo = result.position - Vector2(-50 if $Smoothing2D/sprite.flip_h else 50, -78)
+			dashTo = result.position - Vector2(-50 if $Smoothing2D/sprite.flip_h else 50, -33)
+		elif result2:
+			dashTo = result2.position - Vector2(-50 if $Smoothing2D/sprite.flip_h else 50, -93)
 		else :
 			dashTo = position + Vector2(-dashRange if $Smoothing2D/sprite.flip_h else dashRange, 0)
 		$DashTimer.start()
@@ -62,16 +71,22 @@ func _physics_process(delta: float) -> void:
 		#$AnimationPlayer.play("dash")
 		$SFX/dash.playing = true
 		
+	if is_on_floor() and inJump :
+		inJump = false
+	if Input.is_action_just_pressed("jump") and inJump and doubleJump and Global.doubleJump:
+		velocity.y =  jump_velocity * 8
+		doubleJump = false
+		$SFX/jump_sound.playing = true
 	# either if you are on ground or in coyote time, jump on button press
 	if Input.is_action_just_pressed("jump") and (is_on_floor() or $CoyoteTimer.time_left != 0) and not inJump:
 		$JumpTimer.start()
 		velocity.y = jump_velocity
 		inJump = true
 		$SFX/jump_sound.playing = true
-	if is_on_floor() and inJump and velocity.y == 0:
-		inJump = false
-	if Input.is_action_pressed("jump") and inJump and $JumpTimer.time_left != 0:
+
+	if Input.is_action_pressed("jump") and inJump and $JumpTimer.time_left != 0 and doubleJump:
 		velocity.y +=  jump_velocity
+
 	velocity.y = clampf(velocity.y,-2000,2000)
 
 	direction = Input.get_axis("move_left", "move_right")

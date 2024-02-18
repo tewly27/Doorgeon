@@ -1,13 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://bv8ixagxmuh83"]
+[gd_scene load_steps=14 format=3 uid="uid://bv8ixagxmuh83"]
 
 [ext_resource type="Texture2D" uid="uid://rhodfy2mkl8u" path="res://graphics/Tile/tile2.png" id="1_bkdir"]
 [ext_resource type="Texture2D" uid="uid://cwalq6kn21ebe" path="res://door1.png" id="2_xy6im"]
 [ext_resource type="PackedScene" uid="uid://3dde03ktiua5" path="res://scenes/player/player.tscn" id="3_2v855"]
-[ext_resource type="Texture2D" uid="uid://ccj7gg4cu0fn6" path="res://graphics/UI/hpBarBack.png" id="4_dj87r"]
-[ext_resource type="Texture2D" uid="uid://c4duxhelo4cwv" path="res://graphics/UI/hpBarTop.png" id="5_3y5m4"]
-[ext_resource type="Texture2D" uid="uid://dtoxas07yc1v" path="res://graphics/UI/hpBarMid.png" id="6_k7gbk"]
-[ext_resource type="Script" path="res://scenes/Map/HpBar.gd" id="7_hh0f0"]
 [ext_resource type="Texture2D" uid="uid://drpcv6dcbdjxd" path="res://graphics/2d_lights_and_shadows_neutral_point_light.webp" id="7_md0h8"]
+[ext_resource type="PackedScene" uid="uid://mrbjblj6bi4j" path="res://canvas_layer.tscn" id="8_iprfr"]
 [ext_resource type="PackedScene" uid="uid://btsaj217s4cos" path="res://door.tscn" id="9_ymvbx"]
 [ext_resource type="Script" path="res://scenes/Map/MusicChanger.gd" id="10_56tvx"]
 [ext_resource type="AudioStream" uid="uid://bsif7ofhpwq3x" path="res://sounds/music/doorgeon-song1.mp3" id="11_a27ny"]
@@ -1296,24 +1293,6 @@ texture_scale = 0.4
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_iqc8s")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer"]
-offset_left = 76.0
-offset_top = 6.0
-offset_right = 196.0
-offset_bottom = 46.0
-scale = Vector2(3, 3)
-value = 100.0
-stretch_margin_left = 40
-stretch_margin_top = 40
-stretch_margin_right = 40
-stretch_margin_bottom = 40
-texture_under = ExtResource("4_dj87r")
-texture_over = ExtResource("5_3y5m4")
-texture_progress = ExtResource("6_k7gbk")
-script = ExtResource("7_hh0f0")
-
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(146, -36)
 scale = Vector2(4.81494, 4.81494)
@@ -1368,9 +1347,11 @@ scene = "res://scenes/Map/room2.tscn"
 position = Vector2(-843, 7)
 x = 898
 y = 59
-scene = "res://scenes/Map/room01.tscn"
+scene = "res://scenes/Map/roomA1.tscn"
 
 [node name="MusicChanger" type="Node" parent="."]
 script = ExtResource("10_56tvx")
 music = ExtResource("11_a27ny")
 v = -14
+
+[node name="CanvasLayer" parent="." instance=ExtResource("8_iprfr")]

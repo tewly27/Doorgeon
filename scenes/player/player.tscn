@@ -14,8 +14,9 @@
 [ext_resource type="AudioStream" uid="uid://d02rk57apm43x" path="res://sounds/sfx/Dash.wav" id="10_6st4u"]
 [ext_resource type="AudioStream" uid="uid://ydfujhvjn56y" path="res://sounds/sfx/Stomp.wav" id="11_jq4yw"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_j6t3t"]
-size = Vector2(44, 83)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iot3r"]
+radius = 15.0
+height = 84.0
 
 [sub_resource type="Animation" id="Animation_wxsvn"]
 length = 0.001
@@ -107,7 +108,7 @@ tracks/6/keys = {
 [sub_resource type="Animation" id="Animation_53b1p"]
 resource_name = "attack1"
 length = 0.35
-step = 0.05
+step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -151,7 +152,7 @@ tracks/3/path = NodePath("Smoothing2D/Attack1Effect:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.15, 0.2, 0.25, 0.3, 0.35),
+"times": PackedFloat32Array(0.15, 0.17, 0.19, 0.21, 0.23),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 1, 3, 4]
@@ -196,7 +197,7 @@ tracks/6/keys = {
 [sub_resource type="Animation" id="Animation_bcruj"]
 resource_name = "attack1_2"
 length = 0.35
-step = 0.05
+step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -231,7 +232,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.15, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [0.0, 1.5708, 1.57003, 0.0]
+"values": [0.0, -1.5708, -1.5708, 0.0]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -240,7 +241,7 @@ tracks/3/path = NodePath("Smoothing2D/Attack1Effect:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.15, 0.2, 0.25, 0.3, 0.35),
+"times": PackedFloat32Array(0.15, 0.17, 0.19, 0.21, 0.23),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 1, 3, 4]
@@ -285,7 +286,7 @@ tracks/6/keys = {
 [sub_resource type="Animation" id="Animation_5gnck"]
 resource_name = "attack2"
 length = 0.35
-step = 0.05
+step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -329,10 +330,10 @@ tracks/3/path = NodePath("Smoothing2D/Attack1Effect:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.15, 0.2, 0.25, 0.3, 0.35),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.15, 0.17, 0.19, 0.21, 0.23),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 1, 3, 4]
+"values": [4, 0, 1, 1, 3, 4]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -344,7 +345,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0.15, 0.4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(100, -83), Vector2(150, -83)]
+"values": [Vector2(135, -110), Vector2(150, -83)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -356,7 +357,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0.1, 0.15, 0.4),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [0.0, 0.0, 0.0]
+"values": [1.5708, 1.5708, 0.0]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -374,7 +375,7 @@ tracks/6/keys = {
 [sub_resource type="Animation" id="Animation_o3hu3"]
 resource_name = "attack2_2"
 length = 0.35
-step = 0.05
+step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -418,10 +419,10 @@ tracks/3/path = NodePath("Smoothing2D/Attack1Effect:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.15, 0.2, 0.25, 0.3, 0.35),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.15, 0.17, 0.19, 0.21, 0.23),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 1, 3, 4]
+"values": [4, 0, 1, 1, 3, 4]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -433,7 +434,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0.15, 0.4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(100, -83), Vector2(150, -83)]
+"values": [Vector2(-125, -110), Vector2(150, -83)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -445,7 +446,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0.1, 0.15, 0.4),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [0.0, 0.0, 0.0]
+"values": [1.5708, 1.5708, 0.0]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -458,6 +459,59 @@ tracks/6/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_b2ja3"]
+resource_name = "dash"
+length = 0.3
+step = 0.02
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Smoothing2D/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.04, 0.12, 0.2, 0.24),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [102, 103, 104, 103, 102]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Smoothing2D/Door2:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.04, 0.12, 0.2, 0.24),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 1, 0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Smoothing2D/Door2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-3, -87)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Smoothing2D/Door2:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
 }
 
 [sub_resource type="Animation" id="Animation_vr4m0"]
@@ -486,6 +540,42 @@ tracks/1/keys = {
 "update": 1,
 "values": [0]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Smoothing2D/Attack1Effect:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Smoothing2D/Door2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-3, -87)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Smoothing2D/Door2:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_kln1k"]
 resource_name = "jump_down"
@@ -504,6 +594,30 @@ tracks/0/keys = {
 "update": 1,
 "values": [82, 83, 84]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Smoothing2D/Door2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-3, -87)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Smoothing2D/Door2:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_x78po"]
 resource_name = "jump_up"
@@ -520,6 +634,30 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [82, 83, 84]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Smoothing2D/Door2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-3, -87)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Smoothing2D/Door2:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
 }
 
 [sub_resource type="Animation" id="Animation_15wpn"]
@@ -551,34 +689,29 @@ tracks/1/keys = {
 "update": 1,
 "values": [0, 1, 1]
 }
-
-[sub_resource type="Animation" id="Animation_b2ja3"]
-resource_name = "dash"
-length = 0.3
-step = 0.02
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Smoothing2D/sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.04, 0.12, 0.2, 0.24),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [102, 103, 104, 103, 102]
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Smoothing2D/Door2:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Smoothing2D/Door2:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.04, 0.12, 0.2, 0.24),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 1, 0]
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Smoothing2D/Door2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-3, -87)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x45jy"]
@@ -645,8 +778,8 @@ collision_layer = 8
 script = ExtResource("1_v56ng")
 
 [node name="collision" type="CollisionShape2D" parent="."]
-position = Vector2(2, -64.5)
-shape = SubResource("RectangleShape2D_j6t3t")
+position = Vector2(2, -63)
+shape = SubResource("CapsuleShape2D_iot3r")
 
 [node name="CoyoteTimer" type="Timer" parent="."]
 wait_time = 0.1
@@ -709,10 +842,9 @@ scale = Vector2(3, 3)
 texture = ExtResource("4_newbi")
 hframes = 20
 vframes = 6
-frame = 20
+frame = 26
 
 [node name="Attack1Effect" type="Sprite2D" parent="Smoothing2D"]
-visible = false
 position = Vector2(133.333, -83)
 scale = Vector2(3, 3)
 texture = ExtResource("5_cafkq")
@@ -721,6 +853,7 @@ frame = 4
 
 [node name="camera" parent="." instance=ExtResource("2_amrqj")]
 verticalMoveTime = 0.3
+vertical_offset = -100.0
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 visible = false

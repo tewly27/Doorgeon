@@ -51,7 +51,7 @@ func _physics_process(delta):
 		move_and_slide()
 		return
 	if (Global.player.position - position).length() < rangeAgro:
-		velocity.x = SPEED if Global.player.position.x -75 > position.x else -SPEED
+		velocity.x = SPEED if Global.player.position.x > position.x else -SPEED
 		rangeAgro = 500
 	else :
 		if (startPos - position).length() > 20:

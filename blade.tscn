@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://d185305qayfia"]
+
+[ext_resource type="Script" path="res://scenes/Map/blade.gd" id="1_ui6cr"]
+[ext_resource type="Texture2D" uid="uid://b3gdd05v3vkty" path="res://graphics/enemies/blade.png" id="2_ycd75"]
+[ext_resource type="Script" path="res://scenes/Map/Spikes.gd" id="3_2hxee"]
+[ext_resource type="AudioStream" uid="uid://bcv36kr4lf8h1" path="res://sounds/sfx/dash3.wav" id="4_nmhw8"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_56tj6"]
+light_mode = 1
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mdirl"]
+radius = 49.0102
+
+[node name="blade" type="RigidBody2D"]
+z_index = 1
+position = Vector2(-321, -927)
+gravity_scale = 0.5
+script = ExtResource("1_ui6cr")
+
+[node name="Blade" type="Sprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_56tj6")
+scale = Vector2(3, 3)
+texture = ExtResource("2_ycd75")
+
+[node name="Spikes" type="Area2D" parent="."]
+collision_mask = 9
+input_pickable = false
+script = ExtResource("3_2hxee")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spikes"]
+position = Vector2(-1, -22)
+shape = SubResource("CircleShape2D_mdirl")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_nmhw8")
+volume_db = -5.0
+autoplay = true
+
+[connection signal="body_entered" from="Spikes" to="Spikes" method="_on_body_entered"]
+[connection signal="body_exited" from="Spikes" to="Spikes" method="_on_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

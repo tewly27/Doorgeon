@@ -1,15 +1,12 @@
-[gd_scene load_steps=24 format=3 uid="uid://bd2salumngsg"]
+[gd_scene load_steps=18 format=3 uid="uid://bd2salumngsg"]
 
 [ext_resource type="Texture2D" uid="uid://rhodfy2mkl8u" path="res://graphics/Tile/tile2.png" id="1_gjgjs"]
 [ext_resource type="Script" path="res://scenes/Map/Spikes.gd" id="2_mfs25"]
 [ext_resource type="PackedScene" uid="uid://3dde03ktiua5" path="res://scenes/player/player.tscn" id="3_uhy4x"]
-[ext_resource type="Texture2D" uid="uid://ccj7gg4cu0fn6" path="res://graphics/UI/hpBarBack.png" id="4_dq8g5"]
-[ext_resource type="Texture2D" uid="uid://c4duxhelo4cwv" path="res://graphics/UI/hpBarTop.png" id="5_ci4it"]
-[ext_resource type="Texture2D" uid="uid://dtoxas07yc1v" path="res://graphics/UI/hpBarMid.png" id="6_ywpfu"]
-[ext_resource type="Script" path="res://scenes/Map/HpBar.gd" id="7_vnynp"]
 [ext_resource type="Texture2D" uid="uid://drpcv6dcbdjxd" path="res://graphics/2d_lights_and_shadows_neutral_point_light.webp" id="8_cdgrj"]
 [ext_resource type="PackedScene" uid="uid://ncn5ifk5cd0f" path="res://scenes/enemies/enemy_2.tscn" id="9_b2a73"]
 [ext_resource type="PackedScene" uid="uid://btsaj217s4cos" path="res://door.tscn" id="9_q5i8c"]
+[ext_resource type="PackedScene" uid="uid://mrbjblj6bi4j" path="res://canvas_layer.tscn" id="10_yo3w8"]
 [ext_resource type="PackedScene" uid="uid://bpafafj6m5f62" path="res://scenes/enemies/enemy_3.tscn" id="11_lm72s"]
 [ext_resource type="Script" path="res://scenes/Map/MusicChanger.gd" id="12_2fmlu"]
 [ext_resource type="AudioStream" uid="uid://bf4ar330gsn83" path="res://sounds/music/Lurking Fear.mp3" id="13_0dgwt"]
@@ -1273,44 +1270,6 @@ glow_bloom = 0.18
 glow_blend_mode = 0
 adjustment_brightness = 0.49
 
-[sub_resource type="Animation" id="Animation_05u1a"]
-resource_name = "RESET"
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_8ami7"]
-resource_name = "dissolve"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_i00tq"]
-_data = {
-"RESET": SubResource("Animation_05u1a"),
-"dissolve": SubResource("Animation_8ami7")
-}
-
 [node name="Node2D" type="Node2D"]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
@@ -1358,37 +1317,6 @@ texture_scale = 0.4
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_iqc8s")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="HpBar" type="TextureProgressBar" parent="CanvasLayer"]
-offset_left = 76.0
-offset_top = 6.0
-offset_right = 196.0
-offset_bottom = 46.0
-scale = Vector2(3, 3)
-value = 100.0
-stretch_margin_left = 40
-stretch_margin_top = 40
-stretch_margin_right = 40
-stretch_margin_bottom = 40
-texture_under = ExtResource("4_dq8g5")
-texture_over = ExtResource("5_ci4it")
-texture_progress = ExtResource("6_ywpfu")
-script = ExtResource("7_vnynp")
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-modulate = Color(1, 1, 1, 0)
-offset_left = -19.0
-offset_top = -18.0
-offset_right = 1167.0
-offset_bottom = 661.0
-color = Color(0, 0, 0, 1)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
-libraries = {
-"": SubResource("AnimationLibrary_i00tq")
-}
-
 [node name="Node2D" type="Node2D" parent="."]
 visible = false
 position = Vector2(-272, -39)
@@ -1414,8 +1342,8 @@ scene = "res://scenes/Map/room4.tscn"
 
 [node name="Door2" parent="." instance=ExtResource("9_q5i8c")]
 position = Vector2(2100, 68)
-x = -841
-y = 57
+x = 2099
+y = -542
 scene = "res://scenes/Map/room6.tscn"
 
 [node name="Enemy3" parent="." instance=ExtResource("11_lm72s")]
@@ -1427,6 +1355,8 @@ position = Vector2(1584, 34)
 [node name="MusicChanger" type="Node" parent="."]
 script = ExtResource("12_2fmlu")
 music = ExtResource("13_0dgwt")
+
+[node name="CanvasLayer" parent="." instance=ExtResource("10_yo3w8")]
 
 [connection signal="body_entered" from="Spikes" to="Spikes" method="_on_body_entered"]
 [connection signal="body_exited" from="Spikes" to="Spikes" method="_on_body_exited"]

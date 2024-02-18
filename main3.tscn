@@ -1,0 +1,364 @@
+[gd_scene load_steps=14 format=3 uid="uid://8gfyi45x0rih"]
+
+[ext_resource type="Script" path="res://cutscene.gd" id="1_lmgcj"]
+[ext_resource type="FontFile" uid="uid://snvqac2dysyx" path="res://PixelifySans-VariableFont_wght.ttf" id="1_m6lc8"]
+[ext_resource type="Texture2D" uid="uid://ers2842e8mu8" path="res://graphics/cutScene/Scene1.png" id="2_vpdc3"]
+[ext_resource type="Texture2D" uid="uid://bsbnaogo37wg8" path="res://graphics/cutScene/Scene2.png" id="3_8b6lk"]
+[ext_resource type="Texture2D" uid="uid://eyxji6vwydqc" path="res://graphics/cutScene/Scene3.png" id="4_qa2se"]
+[ext_resource type="Texture2D" uid="uid://bacdd0no3l2j8" path="res://graphics/cutScene/Scene4.png" id="5_vm4qq"]
+[ext_resource type="Texture2D" uid="uid://bafv1al5ayfvp" path="res://graphics/cutScene/Scene5.png" id="6_3sjx6"]
+[ext_resource type="Texture2D" uid="uid://bkw1yw5phlwk0" path="res://graphics/cutScene/Scene6.png" id="7_d4g87"]
+[ext_resource type="Texture2D" uid="uid://bciamvylq67ny" path="res://graphics/cutScene/Scene7.png" id="8_v882x"]
+[ext_resource type="Script" path="res://scenes/Map/MusicChanger.gd" id="10_1yesu"]
+[ext_resource type="Texture2D" uid="uid://b335aq4oremp7" path="res://graphics/cutScene/Scene8.png" id="10_42mli"]
+[ext_resource type="AudioStream" uid="uid://cprpc8j8xccdu" path="res://sounds/music/WanderTheme.wav" id="11_gwijy"]
+
+[sub_resource type="Environment" id="Environment_g77wb"]
+background_mode = 3
+glow_enabled = true
+glow_intensity = 0.26
+glow_strength = 1.04
+glow_bloom = 0.37
+glow_blend_mode = 0
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_lmgcj")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_g77wb")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = 260.0
+offset_right = 128.0
+offset_bottom = 315.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.776471, 0.603922, 0.764706, 1)
+theme_override_fonts/font = ExtResource("1_m6lc8")
+theme_override_font_sizes/font_size = 36
+text = "Next"
+
+[node name="Button2" type="Button" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 320.0
+offset_top = 268.0
+offset_right = 576.0
+offset_bottom = 323.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.776471, 0.603922, 0.764706, 1)
+theme_override_fonts/font = ExtResource("1_m6lc8")
+theme_override_font_sizes/font_size = 36
+text = "Skip"
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect1" type="TextureRect" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -308.0
+offset_right = 273.0
+offset_bottom = 116.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_vpdc3")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/TextureRect1"]
+layout_mode = 0
+offset_left = -208.0
+offset_top = 432.0
+offset_right = 713.0
+offset_bottom = 528.0
+theme_override_fonts/font = ExtResource("1_m6lc8")
+theme_override_font_sizes/font_size = 24
+text = "There’s a land your soul goes to before you die. 
+Every thing here must face its trials to determine their final fate. 
+Many fall, but some come back. Anyone who does return never stays the same. "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -308.0
+offset_right = 273.0
+offset_bottom = 116.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_8b6lk")
+expand_mode = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer/Control/TextureRect2"]
+layout_mode = 0
+offset_left = -312.0
+offset_top = 448.0
+offset_right = 840.0
+offset_bottom = 544.0
+theme_override_fonts/font = ExtResource("1_m6lc8")
+theme_override_font_sizes/font_size = 24
+text = "Those with a weak will, long for something they can’t remember what they lost. 
+Forever now do they spend their days wandering with no destination in mind. 
+Living, but now dead inside. "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -308.0
+offset_right = 273.0
+offset_bottom = 116.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_qa2se")
+expand_mode = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer/Control/TextureRect3"]
+layout_mode = 0
+offset_left = -312.0
+offset_top = 440.0
+offset_right = 840.0
+offset_bottom = 536.0
+theme_override_fonts/font = ExtResource("1_m6lc8")
+theme_override_font_sizes/font_size = 24
+text = "Among the few who return there were those who became known as reincarnates. 
+Those with strong wills come back reborn into a new self, 
+with new found abilities beyond their normal capabilities. "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect4" type="TextureRect" parent="CanvasLayer/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -308.0
+offset_right = 273.0
+offset_bottom = 116.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_vm4qq")
+expand_mode = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer/Control/TextureRect4"]
+layout_mode = 0
+offset_left = -312.0
+offset_top = 440.0
+offset_right = 840.0
+offset_bottom = 536.0
+theme_override_fonts/font = ExtResource("1_m6lc8")
+theme_override_font_sizes/font_size = 24
+text = "All now being able to go between the three different planes, the living, dead and the unknown. "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect5" type="TextureRect" parent="CanvasLayer/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -308.0
+offset_right = 273.0
+offset_bottom = 116.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_3sjx6")
+expand_mode = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer/Control/TextureRect5"]
+layout_mode = 0
+offset_left = -312.0
+offset_top = 440.0
+offset_right = 840.0
+offset_bottom = 536.0
+theme_override_fonts/font = ExtResource("1_m6lc8")
+theme_override_font_sizes/font_size = 24
+text = "Among these lands, rule the 3 most powerful reincarnates known as the ascenders. 
+They keep the peace and watch over the remnants. 
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect6" type="TextureRect" parent="CanvasLayer/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -308.0
+offset_right = 273.0
+offset_bottom = 116.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_d4g87")
+expand_mode = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer/Control/TextureRect6"]
+layout_mode = 0
+offset_left = -312.0
+offset_top = 440.0
+offset_right = 840.0
+offset_bottom = 536.0
+theme_override_fonts/font = ExtResource("1_m6lc8")
+theme_override_font_sizes/font_size = 24
+text = "For many years there has been order in these lands… until a mysterious force
+ took over the land of the unknown 
+threatening to break its peace into chaos. 
+Many battles were fought, and only ruins were left.
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect7" type="TextureRect" parent="CanvasLayer/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -308.0
+offset_right = 273.0
+offset_bottom = 116.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_v882x")
+expand_mode = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer/Control/TextureRect7"]
+layout_mode = 0
+offset_left = -312.0
+offset_top = 440.0
+offset_right = 840.0
+offset_bottom = 536.0
+theme_override_fonts/font = ExtResource("1_m6lc8")
+theme_override_font_sizes/font_size = 24
+text = "The gates to the unknown have been broken. No longer can souls pass and find their way through.
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect8" type="TextureRect" parent="CanvasLayer/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -308.0
+offset_right = 273.0
+offset_bottom = 116.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_42mli")
+expand_mode = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer/Control/TextureRect8"]
+layout_mode = 0
+offset_left = -312.0
+offset_top = 440.0
+offset_right = 840.0
+offset_bottom = 536.0
+theme_override_fonts/font = ExtResource("1_m6lc8")
+theme_override_font_sizes/font_size = 24
+text = "In the midst of when all hope has been lost, 
+a soul buried in the unknown appeared right before the gate has been closed. 
+The ascenders are no where to be found and chaos still brews. 
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect9" type="TextureRect" parent="CanvasLayer/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -308.0
+offset_right = 273.0
+offset_bottom = 116.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer/Control/TextureRect9"]
+layout_mode = 0
+offset_left = -328.0
+offset_top = 208.0
+offset_right = 824.0
+offset_bottom = 304.0
+theme_override_fonts/font = ExtResource("1_m6lc8")
+theme_override_font_sizes/font_size = 24
+text = "In this land of ruins, you are the next reincarnate who must find a way through.
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MusicChanger" type="Node" parent="."]
+script = ExtResource("10_1yesu")
+music = ExtResource("11_gwijy")
+v = -14
+
+[connection signal="button_down" from="CanvasLayer/Button" to="." method="_on_button_button_down"]
+[connection signal="button_down" from="CanvasLayer/Button" to="CanvasLayer/Button" method="_on_button_down"]
+[connection signal="button_down" from="CanvasLayer/Button2" to="." method="_on_button_2_button_down"]
+[connection signal="button_down" from="CanvasLayer/Button2" to="CanvasLayer/Button2" method="_on_button_down"]

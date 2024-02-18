@@ -8,7 +8,7 @@ extends Node
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#change = false
-	if music.resource_path == Music.stream.resource_path:
+	if music != null and Music.stream != null and music.resource_path == Music.stream.resource_path:
 		return
 	#oldMusic = Music.stream
 	#oldVolume = Music.volume_db

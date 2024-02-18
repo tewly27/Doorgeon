@@ -1,0 +1,103 @@
+[gd_scene load_steps=9 format=3 uid="uid://mrbjblj6bi4j"]
+
+[ext_resource type="Script" path="res://scenes/Map/CanvasLayer.gd" id="1_bdugt"]
+[ext_resource type="Texture2D" uid="uid://ccj7gg4cu0fn6" path="res://graphics/UI/hpBarBack.png" id="2_3fgjr"]
+[ext_resource type="Texture2D" uid="uid://c4duxhelo4cwv" path="res://graphics/UI/hpBarTop.png" id="3_shu14"]
+[ext_resource type="Texture2D" uid="uid://dtoxas07yc1v" path="res://graphics/UI/hpBarMid.png" id="4_m4nrk"]
+[ext_resource type="Script" path="res://scenes/Map/HpBar.gd" id="5_rrct4"]
+
+[sub_resource type="Animation" id="Animation_05u1a"]
+resource_name = "RESET"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_8ami7"]
+resource_name = "dissolve"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.5, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i00tq"]
+_data = {
+"RESET": SubResource("Animation_05u1a"),
+"dissolve": SubResource("Animation_8ami7")
+}
+
+[node name="CanvasLayer" type="CanvasLayer"]
+visible = false
+script = ExtResource("1_bdugt")
+
+[node name="HpBar" type="TextureProgressBar" parent="."]
+offset_left = 76.0
+offset_top = 6.0
+offset_right = 196.0
+offset_bottom = 46.0
+scale = Vector2(3, 3)
+value = 100.0
+stretch_margin_left = 40
+stretch_margin_top = 40
+stretch_margin_right = 40
+stretch_margin_bottom = 40
+texture_under = ExtResource("2_3fgjr")
+texture_over = ExtResource("3_shu14")
+texture_progress = ExtResource("4_m4nrk")
+script = ExtResource("5_rrct4")
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_i00tq")
+}
